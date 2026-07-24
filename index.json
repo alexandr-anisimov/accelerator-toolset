@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "toolset_ref": "refs/tags/v0.0.0-spike",
+  "toolset_ref": "refs/tags/v0.0.1-spike",
   "artifacts": [
     {
       "id": "AS-SPIKE-001",
