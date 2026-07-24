@@ -1,0 +1,256 @@
+{
+  "schema_version": "1",
+  "toolset_ref": "refs/tags/v0.0.0-spike",
+  "artifacts": [
+    {
+      "id": "AS-SPIKE-001",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-001"
+    },
+    {
+      "id": "AS-SPIKE-002",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-002"
+    },
+    {
+      "id": "AS-SPIKE-003",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-003"
+    },
+    {
+      "id": "AS-SPIKE-004",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-004"
+    },
+    {
+      "id": "AS-SPIKE-005",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-005"
+    },
+    {
+      "id": "AS-SPIKE-006",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-006"
+    },
+    {
+      "id": "AS-SPIKE-007",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-007"
+    },
+    {
+      "id": "AS-SPIKE-008",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-008"
+    },
+    {
+      "id": "AS-SPIKE-009",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-009"
+    },
+    {
+      "id": "AS-SPIKE-010",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-010"
+    },
+    {
+      "id": "AS-SPIKE-011",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-011"
+    },
+    {
+      "id": "AS-SPIKE-012",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-012"
+    },
+    {
+      "id": "AS-SPIKE-013",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-013"
+    },
+    {
+      "id": "AS-SPIKE-014",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-014"
+    },
+    {
+      "id": "AS-SPIKE-015",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-015"
+    },
+    {
+      "id": "AS-SPIKE-016",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-016"
+    },
+    {
+      "id": "AS-SPIKE-017",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-017"
+    },
+    {
+      "id": "AS-SPIKE-018",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-018"
+    },
+    {
+      "id": "AS-SPIKE-019",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-019"
+    },
+    {
+      "id": "AS-SPIKE-020",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-020"
+    },
+    {
+      "id": "AS-SPIKE-021",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-021"
+    },
+    {
+      "id": "AS-SPIKE-022",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-022"
+    },
+    {
+      "id": "AS-SPIKE-023",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-023"
+    },
+    {
+      "id": "AS-SPIKE-024",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-024"
+    },
+    {
+      "id": "AS-SPIKE-025",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-025"
+    },
+    {
+      "id": "AS-SPIKE-026",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-026"
+    },
+    {
+      "id": "AS-SPIKE-027",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-027"
+    },
+    {
+      "id": "AS-SPIKE-028",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-028"
+    },
+    {
+      "id": "AS-SPIKE-029",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-029"
+    },
+    {
+      "id": "AS-SPIKE-030",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-030"
+    },
+    {
+      "id": "AS-SPIKE-031",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-031"
+    },
+    {
+      "id": "AS-SPIKE-032",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-032"
+    },
+    {
+      "id": "AS-SPIKE-033",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-033"
+    },
+    {
+      "id": "AS-SPIKE-034",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-034"
+    },
+    {
+      "id": "AS-SPIKE-035",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-035"
+    },
+    {
+      "id": "AS-SPIKE-036",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-036"
+    },
+    {
+      "id": "AS-SPIKE-037",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-037"
+    },
+    {
+      "id": "AS-SPIKE-038",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-038"
+    },
+    {
+      "id": "AS-SPIKE-039",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-039"
+    },
+    {
+      "id": "AS-SPIKE-040",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-040"
+    },
+    {
+      "id": "AS-SPIKE-041",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-041"
+    },
+    {
+      "id": "AS-SPIKE-042",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-042"
+    },
+    {
+      "id": "AS-SPIKE-043",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-043"
+    },
+    {
+      "id": "AS-SPIKE-044",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-044"
+    },
+    {
+      "id": "AS-SPIKE-045",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-045"
+    },
+    {
+      "id": "AS-SPIKE-046",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-046"
+    },
+    {
+      "id": "AS-SPIKE-047",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-047"
+    },
+    {
+      "id": "AS-SPIKE-048",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-048"
+    },
+    {
+      "id": "AS-SPIKE-049",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-049"
+    },
+    {
+      "id": "AS-SPIKE-050",
+      "version": "0.0.1",
+      "source_path": "artifacts/AS-SPIKE-050"
+    }
+  ]
+}
