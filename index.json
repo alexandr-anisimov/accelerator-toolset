@@ -1,256 +1,344 @@
 {
   "schema_version": "1",
   "toolset_ref": "refs/tags/v0.0.1-spike",
+  "vocabulary": {
+    "languages": ["typescript", "javascript", "python", "csharp", "go"],
+    "frameworks": ["nestjs", "react", "django", "aspnet"],
+    "layout": ["monorepo", "single"],
+    "agents": ["claude-code"],
+    "topics": ["code-review", "testing", "documentation", "refactoring"]
+  },
   "artifacts": [
     {
       "id": "AS-SPIKE-001",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-001"
+      "source_path": "artifacts/AS-SPIKE-001",
+      "applies_to": {},
+      "strength": "always",
+      "topics": []
     },
     {
       "id": "AS-SPIKE-002",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-002"
+      "source_path": "artifacts/AS-SPIKE-002",
+      "applies_to": {
+        "languages": ["typescript"]
+      },
+      "strength": "always",
+      "topics": []
     },
     {
       "id": "AS-SPIKE-003",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-003"
+      "source_path": "artifacts/AS-SPIKE-003",
+      "applies_to": {
+        "languages": ["typescript"]
+      },
+      "strength": "on-demand",
+      "topics": ["code-review"]
     },
     {
       "id": "AS-SPIKE-004",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-004"
+      "source_path": "artifacts/AS-SPIKE-004",
+      "applies_to": {
+        "languages": ["typescript"]
+      },
+      "strength": "on-demand",
+      "topics": ["testing"]
     },
     {
       "id": "AS-SPIKE-005",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-005"
+      "source_path": "artifacts/AS-SPIKE-005",
+      "applies_to": {
+        "languages": ["python"]
+      },
+      "strength": "always",
+      "topics": []
     },
     {
       "id": "AS-SPIKE-006",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-006"
+      "source_path": "artifacts/AS-SPIKE-006",
+      "applies_to": {
+        "languages": ["typescript"],
+        "layout": ["monorepo"]
+      },
+      "strength": "on-demand",
+      "topics": ["refactoring"]
     },
     {
       "id": "AS-SPIKE-007",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-007"
+      "source_path": "artifacts/AS-SPIKE-007",
+      "applies_to": {
+        "frameworks": ["nestjs"]
+      },
+      "strength": "on-demand",
+      "topics": ["documentation"]
     },
     {
       "id": "AS-SPIKE-008",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-008"
+      "source_path": "artifacts/AS-SPIKE-008",
+      "applies_to": {
+        "agents": ["claude-code"]
+      },
+      "strength": "on-demand",
+      "topics": ["code-review", "testing"]
     },
     {
       "id": "AS-SPIKE-009",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-009"
+      "source_path": "artifacts/AS-SPIKE-009",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-010",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-010"
+      "source_path": "artifacts/AS-SPIKE-010",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-011",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-011"
+      "source_path": "artifacts/AS-SPIKE-011",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-012",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-012"
+      "source_path": "artifacts/AS-SPIKE-012",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-013",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-013"
+      "source_path": "artifacts/AS-SPIKE-013",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-014",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-014"
+      "source_path": "artifacts/AS-SPIKE-014",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-015",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-015"
+      "source_path": "artifacts/AS-SPIKE-015",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-016",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-016"
+      "source_path": "artifacts/AS-SPIKE-016",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-017",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-017"
+      "source_path": "artifacts/AS-SPIKE-017",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-018",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-018"
+      "source_path": "artifacts/AS-SPIKE-018",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-019",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-019"
+      "source_path": "artifacts/AS-SPIKE-019",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-020",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-020"
+      "source_path": "artifacts/AS-SPIKE-020",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-021",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-021"
+      "source_path": "artifacts/AS-SPIKE-021",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-022",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-022"
+      "source_path": "artifacts/AS-SPIKE-022",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-023",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-023"
+      "source_path": "artifacts/AS-SPIKE-023",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-024",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-024"
+      "source_path": "artifacts/AS-SPIKE-024",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-025",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-025"
+      "source_path": "artifacts/AS-SPIKE-025",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-026",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-026"
+      "source_path": "artifacts/AS-SPIKE-026",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-027",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-027"
+      "source_path": "artifacts/AS-SPIKE-027",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-028",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-028"
+      "source_path": "artifacts/AS-SPIKE-028",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-029",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-029"
+      "source_path": "artifacts/AS-SPIKE-029",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-030",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-030"
+      "source_path": "artifacts/AS-SPIKE-030",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-031",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-031"
+      "source_path": "artifacts/AS-SPIKE-031",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-032",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-032"
+      "source_path": "artifacts/AS-SPIKE-032",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-033",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-033"
+      "source_path": "artifacts/AS-SPIKE-033",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-034",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-034"
+      "source_path": "artifacts/AS-SPIKE-034",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-035",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-035"
+      "source_path": "artifacts/AS-SPIKE-035",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-036",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-036"
+      "source_path": "artifacts/AS-SPIKE-036",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-037",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-037"
+      "source_path": "artifacts/AS-SPIKE-037",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-038",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-038"
+      "source_path": "artifacts/AS-SPIKE-038",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-039",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-039"
+      "source_path": "artifacts/AS-SPIKE-039",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-040",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-040"
+      "source_path": "artifacts/AS-SPIKE-040",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-041",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-041"
+      "source_path": "artifacts/AS-SPIKE-041",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-042",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-042"
+      "source_path": "artifacts/AS-SPIKE-042",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-043",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-043"
+      "source_path": "artifacts/AS-SPIKE-043",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-044",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-044"
+      "source_path": "artifacts/AS-SPIKE-044",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-045",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-045"
+      "source_path": "artifacts/AS-SPIKE-045",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-046",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-046"
+      "source_path": "artifacts/AS-SPIKE-046",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-047",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-047"
+      "source_path": "artifacts/AS-SPIKE-047",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-048",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-048"
+      "source_path": "artifacts/AS-SPIKE-048",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-049",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-049"
+      "source_path": "artifacts/AS-SPIKE-049",
+      "fixture": true
     },
     {
       "id": "AS-SPIKE-050",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-050"
+      "source_path": "artifacts/AS-SPIKE-050",
+      "fixture": true
     }
   ]
 }

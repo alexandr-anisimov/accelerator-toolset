@@ -2,7 +2,7 @@
 
 The artifact catalog. Consumers fetch selected artifacts from this repository using Git partial clone with cone-mode sparse checkout, so a client downloads only the artifacts it needs rather than the whole catalog.
 
-**Current contents are a transport fixture, not real artifacts.** The 50 `AS-SPIKE-*` directories exist to validate selective transport and are marked `"fixture": true` in their metadata. No production artifact has been authored yet.
+**Most contents are still a transport fixture.** Of the 50 `AS-SPIKE-*` directories, `AS-SPIKE-009` through `AS-SPIKE-050` exist only to validate selective transport and are marked `"fixture": true`. `AS-SPIKE-001` through `AS-SPIKE-008` carry real matching metadata and are treated as catalog content; their payloads are still placeholders.
 
 ## Layout
 
@@ -22,11 +22,21 @@ artifacts/
 {
   "schema_version": "1",
   "toolset_ref": "refs/tags/v0.0.1-spike",
+  "vocabulary": {
+    "languages": ["typescript", "javascript", "python", "csharp", "go"],
+    "frameworks": ["nestjs", "react", "django", "aspnet"],
+    "layout": ["monorepo", "single"],
+    "agents": ["claude-code"],
+    "topics": ["code-review", "testing", "documentation", "refactoring"]
+  },
   "artifacts": [
     {
       "id": "AS-SPIKE-001",
       "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-001"
+      "source_path": "artifacts/AS-SPIKE-001",
+      "applies_to": {},
+      "strength": "always",
+      "topics": []
     }
   ]
 }
@@ -36,11 +46,20 @@ artifacts/
 |---|---|
 | `schema_version` | Index format version. Currently `"1"` |
 | `toolset_ref` | The ref this index describes |
-| `artifacts[].id` | Unique artifact identifier; matches the directory name |
+| `vocabulary` | The closed set of legal values per dimension. Dimensions are exactly `languages`, `frameworks`, `layout`, `agents`, `topics` |
+| `artifacts[].id` | Unique artifact identifier; matches the directory name. Unique case-insensitively, since ids become directory names |
 | `artifacts[].version` | Artifact version |
 | `artifacts[].source_path` | Repository-relative path to the artifact directory |
+| `artifacts[].applies_to` | Which projects the artifact is applicable to. Required. `{}` means universally applicable and must be written explicitly |
+| `artifacts[].strength` | `always` or `on-demand`. Required |
+| `artifacts[].topics` | Intents that select an `on-demand` artifact. Must be non-empty when `strength` is `on-demand` |
+| `artifacts[].fixture` | `true` marks transport test data, exempt from all matching validation. Permitted only on `AS-SPIKE-*` ids |
 
-Only `id`, `version`, and `source_path` are transport inputs. Everything else about an artifact — tags, matching rules, applicability — lives inside the artifact and is owned by the schema track, not by transport.
+Every value in `applies_to` and `topics` must appear in `vocabulary`. Comparison is case-sensitive: `TypeScript` does not match `typescript`.
+
+`id`, `version`, and `source_path` are the transport inputs. The matching fields live in the index as well — not only inside the artifact — because a consumer doing a partial clone holds `index.json` alone at the moment it decides what to fetch. Reading matching metadata from inside artifact directories would require fetching every candidate's blobs before choosing which to fetch, which is the cost partial clone exists to avoid.
+
+An artifact's `metadata.json` carries the same `applies_to`, `strength`, and `topics` as its index entry. The two must agree; the index is authoritative for matching.
 
 ## The subtree contract
 
@@ -100,3 +119,4 @@ Measured against a full shallow clone of this fixture: selecting 5 of 50 artifac
 |---|---|
 | `v0.0.0-spike` | Initial fixture |
 | `v0.0.1-spike` | Representative deterministic payloads — the ref all published measurements were taken against |
+| `v0.1.0` | Matching vocabulary published; `AS-SPIKE-001`–`008` promoted to real catalog metadata |
