@@ -1,0 +1,63 @@
+name: validate
+
+# The catalog's half of the matching contract. An artifact whose tags leave the
+# vocabulary does not fail loudly - it simply never gets selected, and the author
+# has no way to know. This workflow is where that silence becomes a red build.
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    # ubuntu-latest is sufficient: this is pure JSON validation with no
+    # Windows-specific behaviour. The case-insensitive id collision check models
+    # Windows and default macOS filesystems by folding ids explicitly rather than
+    # by observing the runner's own filesystem, so it holds here too.
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Pester
+        shell: pwsh
+        run: |
+          Install-Module -Name Pester -RequiredVersion 5.6.1 -Force -Scope CurrentUser -SkipPublisherCheck
+
+      - name: Validate the catalog index
+        shell: pwsh
+        run: |
+          $result = ./scripts/validate-catalog.ps1 -IndexPath ./index.json
+
+          Write-Host "Validated $($result.ArtifactCount) artifacts."
+
+          if (-not $result.IsValid) {
+              Write-Host "::error::The catalog index failed validation with $(@($result.Errors).Count) error(s)."
+              foreach ($message in @($result.Errors)) {
+                  Write-Host "::error::$message"
+              }
+              exit 1
+          }
+
+          Write-Host 'Catalog index is valid.'
+
+      - name: Run the validator test suite
+        shell: pwsh
+        run: |
+          Import-Module Pester -RequiredVersion 5.6.1
+
+          $configuration = New-PesterConfiguration
+          $configuration.Run.Path = './tests'
+          $configuration.Run.PassThru = $true
+          $configuration.Output.Verbosity = 'Detailed'
+
+          $result = Invoke-Pester -Configuration $configuration
+
+          # Checked explicitly rather than trusting the exit code: Invoke-Pester
+          # with PassThru returns an object and does not itself fail the step.
+          if ($result.FailedCount -gt 0) {
+              Write-Host "::error::$($result.FailedCount) test(s) failed."
+              exit 1
+          }
