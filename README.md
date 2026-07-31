@@ -110,6 +110,7 @@ Measured against a full shallow clone of this fixture: selecting 5 of 50 artifac
 
 ## Related
 
+- Adding an artifact — the `strength`, `applies_to`, and `topics` decisions, a worked example, and how to validate before pushing: [`docs/authoring-artifacts.md`](docs/authoring-artifacts.md)
 - Transport evidence, measurements, and the GO verdict: `spikes/infra-transport/coder-infra-spike-report.md` in [`accelerator-installation`](https://github.com/alexandr-anisimov/accelerator-installation)
 - Installer delivery and installation instructions: same repository
 
