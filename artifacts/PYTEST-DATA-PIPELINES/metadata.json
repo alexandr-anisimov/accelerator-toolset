@@ -1,0 +1,10 @@
+{
+  "id": "PYTEST-DATA-PIPELINES",
+  "version": "0.1.0",
+  "source_path": "artifacts/PYTEST-DATA-PIPELINES",
+  "applies_to": {
+    "languages": ["python"]
+  },
+  "strength": "on-demand",
+  "topics": ["testing"]
+}

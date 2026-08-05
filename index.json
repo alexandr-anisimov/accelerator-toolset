@@ -1,14 +1,34 @@
 {
   "schema_version": "1",
-  "toolset_ref": "refs/tags/v0.0.1-spike",
+  "toolset_ref": "refs/tags/v0.1.0",
   "vocabulary": {
-    "languages": ["typescript", "javascript", "python", "csharp", "go"],
-    "frameworks": ["nestjs", "react", "django", "aspnet"],
+    "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
+    "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino"],
     "layout": ["monorepo", "single"],
     "agents": ["claude-code"],
-    "topics": ["code-review", "testing", "documentation", "refactoring"]
+    "topics": [
+      "code-review",
+      "testing",
+      "documentation",
+      "refactoring",
+      "orchestration",
+      "data-modeling",
+      "data-quality",
+      "ingestion",
+      "performance"
+    ]
   },
   "artifacts": [
+    {
+      "id": "AIRFLOW-DAG-CONVENTIONS",
+      "version": "0.1.0",
+      "source_path": "artifacts/AIRFLOW-DAG-CONVENTIONS",
+      "applies_to": {
+        "frameworks": ["airflow"]
+      },
+      "strength": "on-demand",
+      "topics": ["orchestration"]
+    },
     {
       "id": "AS-SPIKE-001",
       "version": "0.0.1",
@@ -89,256 +109,44 @@
       "topics": ["code-review", "testing"]
     },
     {
-      "id": "AS-SPIKE-009",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-009",
-      "fixture": true
+      "id": "DBT-PROJECT-CONVENTIONS",
+      "version": "0.1.0",
+      "source_path": "artifacts/DBT-PROJECT-CONVENTIONS",
+      "applies_to": {
+        "frameworks": ["dbt"]
+      },
+      "strength": "on-demand",
+      "topics": ["data-modeling", "data-quality"]
     },
     {
-      "id": "AS-SPIKE-010",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-010",
-      "fixture": true
+      "id": "ETL-DECOMPOSITION",
+      "version": "0.1.0",
+      "source_path": "artifacts/ETL-DECOMPOSITION",
+      "applies_to": {
+        "languages": ["python"]
+      },
+      "strength": "on-demand",
+      "topics": ["refactoring", "orchestration"]
     },
     {
-      "id": "AS-SPIKE-011",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-011",
-      "fixture": true
+      "id": "PYTEST-DATA-PIPELINES",
+      "version": "0.1.0",
+      "source_path": "artifacts/PYTEST-DATA-PIPELINES",
+      "applies_to": {
+        "languages": ["python"]
+      },
+      "strength": "on-demand",
+      "topics": ["testing"]
     },
     {
-      "id": "AS-SPIKE-012",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-012",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-013",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-013",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-014",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-014",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-015",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-015",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-016",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-016",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-017",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-017",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-018",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-018",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-019",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-019",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-020",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-020",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-021",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-021",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-022",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-022",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-023",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-023",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-024",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-024",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-025",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-025",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-026",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-026",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-027",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-027",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-028",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-028",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-029",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-029",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-030",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-030",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-031",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-031",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-032",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-032",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-033",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-033",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-034",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-034",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-035",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-035",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-036",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-036",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-037",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-037",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-038",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-038",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-039",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-039",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-040",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-040",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-041",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-041",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-042",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-042",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-043",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-043",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-044",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-044",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-045",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-045",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-046",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-046",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-047",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-047",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-048",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-048",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-049",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-049",
-      "fixture": true
-    },
-    {
-      "id": "AS-SPIKE-050",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-050",
-      "fixture": true
+      "id": "SCD2-IMPLEMENTATION",
+      "version": "0.1.0",
+      "source_path": "artifacts/SCD2-IMPLEMENTATION",
+      "applies_to": {
+        "languages": ["sql"]
+      },
+      "strength": "on-demand",
+      "topics": ["data-modeling"]
     }
   ]
 }

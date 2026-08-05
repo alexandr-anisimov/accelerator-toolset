@@ -1,0 +1,10 @@
+{
+  "id": "AIRFLOW-DAG-CONVENTIONS",
+  "version": "0.1.0",
+  "source_path": "artifacts/AIRFLOW-DAG-CONVENTIONS",
+  "applies_to": {
+    "frameworks": ["airflow"]
+  },
+  "strength": "on-demand",
+  "topics": ["orchestration"]
+}

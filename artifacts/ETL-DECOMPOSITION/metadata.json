@@ -1,0 +1,10 @@
+{
+  "id": "ETL-DECOMPOSITION",
+  "version": "0.1.0",
+  "source_path": "artifacts/ETL-DECOMPOSITION",
+  "applies_to": {
+    "languages": ["python"]
+  },
+  "strength": "on-demand",
+  "topics": ["refactoring", "orchestration"]
+}
