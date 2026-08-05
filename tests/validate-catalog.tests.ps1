@@ -702,7 +702,14 @@ Describe 'validate-catalog.ps1' {
 
             $result.Errors | Should -Be @()
             $result.IsValid | Should -BeTrue
-            $result.ArtifactCount | Should -Be 50
+
+            # Counted from the file rather than pinned to a literal: the catalog
+            # grows as artifacts are published, and a hardcoded total turns every
+            # such addition into an unrelated test failure. What is worth asserting
+            # is that the validator saw every entry, not how many there are.
+            $indexed = @((Get-Content -Raw -LiteralPath (Join-Path $repoRoot 'index.json') |
+                ConvertFrom-Json).artifacts).Count
+            $result.ArtifactCount | Should -Be $indexed
         }
     }
 }

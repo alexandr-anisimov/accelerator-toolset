@@ -1,0 +1,10 @@
+{
+  "id": "SCD2-IMPLEMENTATION",
+  "version": "0.1.0",
+  "source_path": "artifacts/SCD2-IMPLEMENTATION",
+  "applies_to": {
+    "languages": ["sql"]
+  },
+  "strength": "on-demand",
+  "topics": ["data-modeling"]
+}

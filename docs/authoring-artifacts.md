@@ -4,6 +4,8 @@ How to add an artifact to this catalog and get its matching metadata right.
 
 This is the task-shaped companion to [`README.md`](../README.md), which is the reference: the `index.json` field table, the one-artifact-one-subtree contract, the path rules, and how consumers fetch. Read it first. This guide does not repeat it — it covers the decisions you have to make and the ways they go wrong.
 
+For a shipped artifact to copy from, read [`artifacts/ETL-DECOMPOSITION`](../artifacts/ETL-DECOMPOSITION) — one dimension, one topic, `on-demand`, which is the shape most artifacts should have.
+
 ## The three decisions
 
 Everything else about an artifact is mechanical. These three determine whether anyone ever sees it.
@@ -64,11 +66,18 @@ Taken from `index.json` at the time of writing. **`index.json` is the source of 
 
 | Dimension | Values |
 |---|---|
-| `languages` | `typescript`, `javascript`, `python`, `csharp`, `go` |
-| `frameworks` | `nestjs`, `react`, `django`, `aspnet` |
+| `languages` | `typescript`, `javascript`, `python`, `csharp`, `go`, `sql` |
+| `frameworks` | `nestjs`, `react`, `django`, `aspnet`, `airflow`, `dbt`, `duckdb`, `spark`, `trino` |
 | `layout` | `monorepo`, `single` |
 | `agents` | `claude-code` |
-| `topics` | `code-review`, `testing`, `documentation`, `refactoring` |
+| `topics` | `code-review`, `testing`, `documentation`, `refactoring`, `orchestration`, `data-modeling`, `data-quality`, `ingestion`, `performance` |
+
+`frameworks` is the loosest of the dimensions: it holds anything that identifies the
+stack beyond the language, so orchestrators (`airflow`), transformation tools (`dbt`)
+and engines (`duckdb`, `spark`, `trino`) all live there. Calling dbt a "framework" is
+a stretch, and the accurate name would be something like `tools`. Renaming a
+*dimension* is the installer's half of the contract and moves `schema_version`, so
+the loose name is kept deliberately rather than paid for with a schema bump.
 
 A value not in the vocabulary is a CI failure. That is deliberate: the alternative is an artifact that passes review and then matches nothing forever, with no error anywhere.
 
@@ -194,7 +203,7 @@ Passing looks like this — `IsValid: True` and an empty `Errors` list:
 ```text
 IsValid       : True
 Errors        : {}
-ArtifactCount : 50
+ArtifactCount : 13
 ```
 
 Failing prints each fault to the host as it is found *and* returns them in `Errors`. Every fault is collected, so one run shows you everything rather than one typo per push:

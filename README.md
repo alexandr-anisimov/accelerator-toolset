@@ -2,18 +2,25 @@
 
 The artifact catalog. Consumers fetch selected artifacts from this repository using Git partial clone with cone-mode sparse checkout, so a client downloads only the artifacts it needs rather than the whole catalog.
 
-**Most contents are still a transport fixture.** Of the 50 `AS-SPIKE-*` directories, `AS-SPIKE-009` through `AS-SPIKE-050` exist only to validate selective transport and are marked `"fixture": true`. `AS-SPIKE-001` through `AS-SPIKE-008` carry real matching metadata and are treated as catalog content; their payloads are still placeholders.
+The catalog holds five data-engineering artifacts with real content, plus eight `AS-SPIKE-*` entries retained as matching examples. The spikes carry real matching metadata — between them they exercise every branch of the matching rule (empty `applies_to`, single- and multi-dimension filters, a non-matching language, both strengths, multi-topic selection) — but their payloads are still placeholders. `AS-SPIKE-009` through `AS-SPIKE-050` were transport fixtures and have been removed now that selective transport is proven.
 
 ## Layout
 
 ```text
 index.json                      # catalog root — the only file fetched unconditionally
 artifacts/
+  AIRFLOW-DAG-CONVENTIONS/
+    SKILL.md
+    metadata.json
+  DBT-PROJECT-CONVENTIONS/
+  ETL-DECOMPOSITION/
+  PYTEST-DATA-PIPELINES/
+  SCD2-IMPLEMENTATION/
   AS-SPIKE-001/
     SKILL.md
     metadata.json
     payload.txt
-  ... AS-SPIKE-050/
+  ... AS-SPIKE-008/
 ```
 
 ## `index.json`
@@ -21,22 +28,25 @@ artifacts/
 ```json
 {
   "schema_version": "1",
-  "toolset_ref": "refs/tags/v0.0.1-spike",
+  "toolset_ref": "refs/tags/v0.1.0",
   "vocabulary": {
-    "languages": ["typescript", "javascript", "python", "csharp", "go"],
-    "frameworks": ["nestjs", "react", "django", "aspnet"],
+    "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
+    "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino"],
     "layout": ["monorepo", "single"],
     "agents": ["claude-code"],
-    "topics": ["code-review", "testing", "documentation", "refactoring"]
+    "topics": [
+      "code-review", "testing", "documentation", "refactoring",
+      "orchestration", "data-modeling", "data-quality", "ingestion", "performance"
+    ]
   },
   "artifacts": [
     {
-      "id": "AS-SPIKE-001",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-001",
-      "applies_to": {},
-      "strength": "always",
-      "topics": []
+      "id": "AIRFLOW-DAG-CONVENTIONS",
+      "version": "0.1.0",
+      "source_path": "artifacts/AIRFLOW-DAG-CONVENTIONS",
+      "applies_to": { "frameworks": ["airflow"] },
+      "strength": "on-demand",
+      "topics": ["orchestration"]
     }
   ]
 }
@@ -106,7 +116,7 @@ git -C <dst> sparse-checkout set artifacts/AS-SPIKE-001 artifacts/AS-SPIKE-002
 
 Pin to a tag or commit SHA, never a moving branch. Unselected artifacts are absent from the local object store, not merely from the worktree — verified under `GIT_NO_LAZY_FETCH=1`. Reading a missing blob triggers a lazy fetch from the promisor remote.
 
-Measured against a full shallow clone of this fixture: selecting 5 of 50 artifacts transferred ~91% less compressed pack payload. Sparse selection is *slower* than a full clone at this scale because of the extra round trip — the benefit is disk and context, not speed.
+Measured against a full shallow clone of the 50-artifact fixture set this catalog carried at the time: selecting 5 of 50 artifacts transferred ~91% less compressed pack payload. That measurement is historical — the 42 pure transport fixtures have since been removed — and it is kept because it is the number the transport design was justified on, not a description of the catalog's current size. Sparse selection is *slower* than a full clone at this scale because of the extra round trip — the benefit is disk and context, not speed.
 
 ## Related
 
