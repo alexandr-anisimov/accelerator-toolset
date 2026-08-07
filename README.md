@@ -28,7 +28,7 @@ artifacts/
 ```json
 {
   "schema_version": "1",
-  "toolset_ref": "refs/tags/v0.2.0",
+  "toolset_ref": "refs/tags/v0.3.0",
   "vocabulary": {
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
     "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino", "snowflake", "databricks"],
@@ -134,5 +134,6 @@ Measured against a full shallow clone of the 50-artifact fixture set this catalo
 | `v0.0.1-spike` | Representative deterministic payloads — the ref all published measurements were taken against |
 | `v0.1.0` | Matching vocabulary published; `AS-SPIKE-001`–`008` promoted to real catalog metadata |
 | `v0.2.0` | First artifacts with real content (five, data-engineering); vocabulary gains `sql`, the tool frameworks and the data topics; transport fixtures `AS-SPIKE-009`–`050` removed |
+| `v0.3.0` | Ten dbt and Snowflake artifacts adapted from a third-party MIT source (see [`NOTICE`](NOTICE)); vocabulary gains the `snowflake` and `databricks` frameworks and the `debugging` topic; line endings pinned by `.gitattributes` |
 
 Tags are immutable. A published tag is never moved to a different commit: a consumer profile pins one of these, and repointing it would hand the same profile different artifacts with nothing anywhere reporting a change. Corrections ship as a new tag.
