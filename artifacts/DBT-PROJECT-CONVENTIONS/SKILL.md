@@ -197,6 +197,9 @@ Three traps:
 Reach for incremental when a full rebuild is genuinely too slow. Below a few million
 rows, `table` is simpler, always correct, and immune to every trap above.
 
+For choosing between the strategies, verifying a `unique_key`, and handling schema
+drift, see [dbt-incremental-models](../DBT-INCREMENTAL-MODELS/SKILL.md).
+
 ## Snapshots
 
 SCD2 in one command - see [scd2-implementation](../SCD2-IMPLEMENTATION/SKILL.md) for

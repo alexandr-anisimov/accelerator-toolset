@@ -1,0 +1,10 @@
+{
+  "id": "DBT-MODEL-CREATION",
+  "version": "0.1.0",
+  "source_path": "artifacts/DBT-MODEL-CREATION",
+  "applies_to": {
+    "frameworks": ["dbt"]
+  },
+  "strength": "on-demand",
+  "topics": ["data-modeling"]
+}

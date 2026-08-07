@@ -1,0 +1,10 @@
+{
+  "id": "DBT-MODEL-TESTING",
+  "version": "0.1.0",
+  "source_path": "artifacts/DBT-MODEL-TESTING",
+  "applies_to": {
+    "frameworks": ["dbt"]
+  },
+  "strength": "on-demand",
+  "topics": ["testing", "data-quality"]
+}
