@@ -3,7 +3,7 @@
   "toolset_ref": "refs/tags/v0.2.0",
   "vocabulary": {
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
-    "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino"],
+    "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino", "snowflake", "databricks"],
     "layout": ["monorepo", "single"],
     "agents": ["claude-code"],
     "topics": [
@@ -15,7 +15,8 @@
       "data-modeling",
       "data-quality",
       "ingestion",
-      "performance"
+      "performance",
+      "debugging"
     ]
   },
   "artifacts": [
