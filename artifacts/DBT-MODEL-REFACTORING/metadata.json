@@ -1,0 +1,10 @@
+{
+  "id": "DBT-MODEL-REFACTORING",
+  "version": "0.1.0",
+  "source_path": "artifacts/DBT-MODEL-REFACTORING",
+  "applies_to": {
+    "frameworks": ["dbt"]
+  },
+  "strength": "on-demand",
+  "topics": ["refactoring"]
+}

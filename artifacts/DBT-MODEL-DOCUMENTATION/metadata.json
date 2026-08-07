@@ -1,0 +1,10 @@
+{
+  "id": "DBT-MODEL-DOCUMENTATION",
+  "version": "0.1.0",
+  "source_path": "artifacts/DBT-MODEL-DOCUMENTATION",
+  "applies_to": {
+    "frameworks": ["dbt"]
+  },
+  "strength": "on-demand",
+  "topics": ["documentation"]
+}
