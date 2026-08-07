@@ -1,0 +1,10 @@
+{
+  "id": "DBT-ERROR-DEBUGGING",
+  "version": "0.1.0",
+  "source_path": "artifacts/DBT-ERROR-DEBUGGING",
+  "applies_to": {
+    "frameworks": ["dbt"]
+  },
+  "strength": "on-demand",
+  "topics": ["debugging"]
+}

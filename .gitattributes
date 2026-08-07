@@ -1,0 +1,32 @@
+# Line-ending policy for this catalog.
+#
+# Everything in the repository is stored with LF. What lands in a contributor's
+# working directory depends on the setting below, per file type.
+#
+# Without this file the policy is whatever each contributor's core.autocrlf
+# happens to be, which differs between machines and between platforms. That is
+# how a repository ends up with commits that rewrite every line of a file and
+# show no real change.
+
+# Default: let Git decide what is text, normalise it to LF in the repository,
+# and check it out with the platform's native endings.
+* text=auto
+
+# Content served to consumers. Checked out as LF everywhere, including Windows,
+# because these files are read by tools and agents rather than edited in a
+# Windows editor, and a stray CR is not always handled the same way.
+*.md    text eol=lf
+*.json  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.txt   text eol=lf
+NOTICE  text eol=lf
+
+# PowerShell is a Windows-first toolchain; keep these native on checkout.
+*.ps1   text
+
+# Anything Git should never convert, should it appear later.
+*.png   binary
+*.jpg   binary
+*.gz    binary
+*.zip   binary

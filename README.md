@@ -31,12 +31,13 @@ artifacts/
   "toolset_ref": "refs/tags/v0.2.0",
   "vocabulary": {
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
-    "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino"],
+    "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino", "snowflake", "databricks"],
     "layout": ["monorepo", "single"],
     "agents": ["claude-code"],
     "topics": [
       "code-review", "testing", "documentation", "refactoring",
-      "orchestration", "data-modeling", "data-quality", "ingestion", "performance"
+      "orchestration", "data-modeling", "data-quality", "ingestion", "performance",
+      "debugging"
     ]
   },
   "artifacts": [
@@ -120,6 +121,7 @@ Measured against a full shallow clone of the 50-artifact fixture set this catalo
 
 ## Related
 
+- Third-party attribution for artifacts derived from external sources: [`NOTICE`](NOTICE)
 - Adding an artifact — the `strength`, `applies_to`, and `topics` decisions, a worked example, and how to validate before pushing: [`docs/authoring-artifacts.md`](docs/authoring-artifacts.md)
 - Transport evidence, measurements, and the GO verdict: `spikes/infra-transport/coder-infra-spike-report.md` in [`accelerator-installation`](https://github.com/alexandr-anisimov/accelerator-installation)
 - Installer delivery and installation instructions: same repository

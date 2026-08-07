@@ -1,0 +1,67 @@
+NOTICE
+======
+
+This catalog contains artifacts derived from third-party work. Each entry below
+records what was taken, from where, and under which licence. The full licence
+text of each upstream project is reproduced in this file, as those licences
+require.
+
+Artifacts not listed here are original to this repository.
+
+
+-------------------------------------------------------------------------------
+AltimateAI/data-engineering-skills
+-------------------------------------------------------------------------------
+
+Upstream:  https://github.com/AltimateAI/data-engineering-skills
+Licence:   MIT
+Copyright: Copyright (c) 2026 AltimateAI
+
+Ten skills were adapted into artifacts in this catalog. The upstream repository
+also contains an eleventh skill, `altimate-code`, which delegates to the
+upstream author's own tooling; it was deliberately not taken.
+
+Adaptation was not a verbatim copy. Upstream ships Claude Code skills whose
+frontmatter carries trigger conditions inside a multi-line `description`. This
+catalog selects artifacts through `applies_to`, `strength`, and `topics` in
+`index.json` and `metadata.json`, so those triggers were re-expressed as catalog
+metadata. Prose was edited for house style and to remove upstream-specific
+assumptions. The substance of each workflow — its steps, its verification gates,
+and its stated rules — is upstream's.
+
+Artifacts derived from this source:
+
+  DBT-MODEL-CREATION          <- skills/dbt/creating-dbt-models
+  DBT-ERROR-DEBUGGING         <- skills/dbt/debugging-dbt-errors
+  DBT-INCREMENTAL-MODELS      <- skills/dbt/developing-incremental-models
+  DBT-MODEL-TESTING           <- skills/dbt/testing-dbt-models
+  DBT-MODEL-REFACTORING       <- skills/dbt/refactoring-dbt-models
+  DBT-SQL-MIGRATION           <- skills/dbt/migrating-sql-to-dbt
+  DBT-MODEL-DOCUMENTATION     <- skills/dbt/documenting-dbt-models
+  SNOWFLAKE-EXPENSIVE-QUERIES <- skills/snowflake/finding-expensive-queries
+  SNOWFLAKE-QUERY-BY-ID       <- skills/snowflake/optimizing-query-by-id
+  SNOWFLAKE-QUERY-TEXT        <- skills/snowflake/optimizing-query-text
+
+Upstream licence text, reproduced in full:
+
+    MIT License
+
+    Copyright (c) 2026 AltimateAI
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.

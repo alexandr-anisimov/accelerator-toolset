@@ -3,7 +3,7 @@
   "toolset_ref": "refs/tags/v0.2.0",
   "vocabulary": {
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
-    "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino"],
+    "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino", "snowflake", "databricks"],
     "layout": ["monorepo", "single"],
     "agents": ["claude-code"],
     "topics": [
@@ -15,7 +15,8 @@
       "data-modeling",
       "data-quality",
       "ingestion",
-      "performance"
+      "performance",
+      "debugging"
     ]
   },
   "artifacts": [
@@ -109,6 +110,66 @@
       "topics": ["code-review", "testing"]
     },
     {
+      "id": "DBT-ERROR-DEBUGGING",
+      "version": "0.1.0",
+      "source_path": "artifacts/DBT-ERROR-DEBUGGING",
+      "applies_to": {
+        "frameworks": ["dbt"]
+      },
+      "strength": "on-demand",
+      "topics": ["debugging"]
+    },
+    {
+      "id": "DBT-INCREMENTAL-MODELS",
+      "version": "0.1.0",
+      "source_path": "artifacts/DBT-INCREMENTAL-MODELS",
+      "applies_to": {
+        "frameworks": ["dbt"]
+      },
+      "strength": "on-demand",
+      "topics": ["data-modeling", "performance"]
+    },
+    {
+      "id": "DBT-MODEL-CREATION",
+      "version": "0.1.0",
+      "source_path": "artifacts/DBT-MODEL-CREATION",
+      "applies_to": {
+        "frameworks": ["dbt"]
+      },
+      "strength": "on-demand",
+      "topics": ["data-modeling"]
+    },
+    {
+      "id": "DBT-MODEL-DOCUMENTATION",
+      "version": "0.1.0",
+      "source_path": "artifacts/DBT-MODEL-DOCUMENTATION",
+      "applies_to": {
+        "frameworks": ["dbt"]
+      },
+      "strength": "on-demand",
+      "topics": ["documentation"]
+    },
+    {
+      "id": "DBT-MODEL-REFACTORING",
+      "version": "0.1.0",
+      "source_path": "artifacts/DBT-MODEL-REFACTORING",
+      "applies_to": {
+        "frameworks": ["dbt"]
+      },
+      "strength": "on-demand",
+      "topics": ["refactoring"]
+    },
+    {
+      "id": "DBT-MODEL-TESTING",
+      "version": "0.1.0",
+      "source_path": "artifacts/DBT-MODEL-TESTING",
+      "applies_to": {
+        "frameworks": ["dbt"]
+      },
+      "strength": "on-demand",
+      "topics": ["testing", "data-quality"]
+    },
+    {
       "id": "DBT-PROJECT-CONVENTIONS",
       "version": "0.1.0",
       "source_path": "artifacts/DBT-PROJECT-CONVENTIONS",
@@ -117,6 +178,16 @@
       },
       "strength": "on-demand",
       "topics": ["data-modeling", "data-quality"]
+    },
+    {
+      "id": "DBT-SQL-MIGRATION",
+      "version": "0.1.0",
+      "source_path": "artifacts/DBT-SQL-MIGRATION",
+      "applies_to": {
+        "frameworks": ["dbt"]
+      },
+      "strength": "on-demand",
+      "topics": ["refactoring", "data-modeling"]
     },
     {
       "id": "ETL-DECOMPOSITION",
@@ -147,6 +218,36 @@
       },
       "strength": "on-demand",
       "topics": ["data-modeling"]
+    },
+    {
+      "id": "SNOWFLAKE-EXPENSIVE-QUERIES",
+      "version": "0.1.0",
+      "source_path": "artifacts/SNOWFLAKE-EXPENSIVE-QUERIES",
+      "applies_to": {
+        "frameworks": ["snowflake"]
+      },
+      "strength": "on-demand",
+      "topics": ["performance"]
+    },
+    {
+      "id": "SNOWFLAKE-QUERY-BY-ID",
+      "version": "0.1.0",
+      "source_path": "artifacts/SNOWFLAKE-QUERY-BY-ID",
+      "applies_to": {
+        "frameworks": ["snowflake"]
+      },
+      "strength": "on-demand",
+      "topics": ["performance", "debugging"]
+    },
+    {
+      "id": "SNOWFLAKE-QUERY-TEXT",
+      "version": "0.1.0",
+      "source_path": "artifacts/SNOWFLAKE-QUERY-TEXT",
+      "applies_to": {
+        "frameworks": ["snowflake"]
+      },
+      "strength": "on-demand",
+      "topics": ["performance", "refactoring"]
     }
   ]
 }

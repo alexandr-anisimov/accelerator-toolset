@@ -1,0 +1,10 @@
+{
+  "id": "DBT-SQL-MIGRATION",
+  "version": "0.1.0",
+  "source_path": "artifacts/DBT-SQL-MIGRATION",
+  "applies_to": {
+    "frameworks": ["dbt"]
+  },
+  "strength": "on-demand",
+  "topics": ["refactoring", "data-modeling"]
+}

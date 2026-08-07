@@ -1,0 +1,10 @@
+{
+  "id": "SNOWFLAKE-QUERY-TEXT",
+  "version": "0.1.0",
+  "source_path": "artifacts/SNOWFLAKE-QUERY-TEXT",
+  "applies_to": {
+    "frameworks": ["snowflake"]
+  },
+  "strength": "on-demand",
+  "topics": ["performance", "refactoring"]
+}
