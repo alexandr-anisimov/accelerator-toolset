@@ -188,6 +188,36 @@
       },
       "strength": "on-demand",
       "topics": ["data-modeling"]
+    },
+    {
+      "id": "SNOWFLAKE-EXPENSIVE-QUERIES",
+      "version": "0.1.0",
+      "source_path": "artifacts/SNOWFLAKE-EXPENSIVE-QUERIES",
+      "applies_to": {
+        "frameworks": ["snowflake"]
+      },
+      "strength": "on-demand",
+      "topics": ["performance"]
+    },
+    {
+      "id": "SNOWFLAKE-QUERY-BY-ID",
+      "version": "0.1.0",
+      "source_path": "artifacts/SNOWFLAKE-QUERY-BY-ID",
+      "applies_to": {
+        "frameworks": ["snowflake"]
+      },
+      "strength": "on-demand",
+      "topics": ["performance", "debugging"]
+    },
+    {
+      "id": "SNOWFLAKE-QUERY-TEXT",
+      "version": "0.1.0",
+      "source_path": "artifacts/SNOWFLAKE-QUERY-TEXT",
+      "applies_to": {
+        "frameworks": ["snowflake"]
+      },
+      "strength": "on-demand",
+      "topics": ["performance", "refactoring"]
     }
   ]
 }

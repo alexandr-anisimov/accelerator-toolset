@@ -1,0 +1,10 @@
+{
+  "id": "SNOWFLAKE-QUERY-BY-ID",
+  "version": "0.1.0",
+  "source_path": "artifacts/SNOWFLAKE-QUERY-BY-ID",
+  "applies_to": {
+    "frameworks": ["snowflake"]
+  },
+  "strength": "on-demand",
+  "topics": ["performance", "debugging"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "SNOWFLAKE-EXPENSIVE-QUERIES",
+  "version": "0.1.0",
+  "source_path": "artifacts/SNOWFLAKE-EXPENSIVE-QUERIES",
+  "applies_to": {
+    "frameworks": ["snowflake"]
+  },
+  "strength": "on-demand",
+  "topics": ["performance"]
+}
