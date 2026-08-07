@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "toolset_ref": "refs/tags/v0.3.0",
+  "toolset_ref": "refs/tags/v0.4.0",
   "vocabulary": {
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
     "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino", "snowflake", "databricks"],
@@ -29,85 +29,6 @@
       },
       "strength": "on-demand",
       "topics": ["orchestration"]
-    },
-    {
-      "id": "AS-SPIKE-001",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-001",
-      "applies_to": {},
-      "strength": "always",
-      "topics": []
-    },
-    {
-      "id": "AS-SPIKE-002",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-002",
-      "applies_to": {
-        "languages": ["typescript"]
-      },
-      "strength": "always",
-      "topics": []
-    },
-    {
-      "id": "AS-SPIKE-003",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-003",
-      "applies_to": {
-        "languages": ["typescript"]
-      },
-      "strength": "on-demand",
-      "topics": ["code-review"]
-    },
-    {
-      "id": "AS-SPIKE-004",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-004",
-      "applies_to": {
-        "languages": ["typescript"]
-      },
-      "strength": "on-demand",
-      "topics": ["testing"]
-    },
-    {
-      "id": "AS-SPIKE-005",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-005",
-      "applies_to": {
-        "languages": ["python"]
-      },
-      "strength": "always",
-      "topics": []
-    },
-    {
-      "id": "AS-SPIKE-006",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-006",
-      "applies_to": {
-        "languages": ["typescript"],
-        "layout": ["monorepo"]
-      },
-      "strength": "on-demand",
-      "topics": ["refactoring"]
-    },
-    {
-      "id": "AS-SPIKE-007",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-007",
-      "applies_to": {
-        "frameworks": ["nestjs"]
-      },
-      "strength": "on-demand",
-      "topics": ["documentation"]
-    },
-    {
-      "id": "AS-SPIKE-008",
-      "version": "0.0.1",
-      "source_path": "artifacts/AS-SPIKE-008",
-      "applies_to": {
-        "agents": ["claude-code"]
-      },
-      "strength": "on-demand",
-      "topics": ["code-review", "testing"]
     },
     {
       "id": "DBT-ERROR-DEBUGGING",

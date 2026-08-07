@@ -2,7 +2,9 @@
 
 The artifact catalog. Consumers fetch selected artifacts from this repository using Git partial clone with cone-mode sparse checkout, so a client downloads only the artifacts it needs rather than the whole catalog.
 
-The catalog holds five data-engineering artifacts with real content, plus eight `AS-SPIKE-*` entries retained as matching examples. The spikes carry real matching metadata — between them they exercise every branch of the matching rule (empty `applies_to`, single- and multi-dimension filters, a non-matching language, both strengths, multi-topic selection) — but their payloads are still placeholders. `AS-SPIKE-009` through `AS-SPIKE-050` were transport fixtures and have been removed now that selective transport is proven.
+The catalog holds fifteen data-engineering artifacts, covering dbt, Snowflake, Airflow, and Python pipeline code. Every entry has real content; the `AS-SPIKE-*` placeholders that proved the transport design have all been removed.
+
+Every artifact is currently `on-demand`, so a profile receives only what its declared topics select. There is no baseline set — see [`docs/authoring-artifacts.md`](docs/authoring-artifacts.md) for what an `always` artifact would have to justify.
 
 ## Layout
 
@@ -12,15 +14,20 @@ artifacts/
   AIRFLOW-DAG-CONVENTIONS/
     SKILL.md
     metadata.json
+  DBT-ERROR-DEBUGGING/
+  DBT-INCREMENTAL-MODELS/
+  DBT-MODEL-CREATION/
+  DBT-MODEL-DOCUMENTATION/
+  DBT-MODEL-REFACTORING/
+  DBT-MODEL-TESTING/
   DBT-PROJECT-CONVENTIONS/
+  DBT-SQL-MIGRATION/
   ETL-DECOMPOSITION/
   PYTEST-DATA-PIPELINES/
   SCD2-IMPLEMENTATION/
-  AS-SPIKE-001/
-    SKILL.md
-    metadata.json
-    payload.txt
-  ... AS-SPIKE-008/
+  SNOWFLAKE-EXPENSIVE-QUERIES/
+  SNOWFLAKE-QUERY-BY-ID/
+  SNOWFLAKE-QUERY-TEXT/
 ```
 
 ## `index.json`
@@ -28,7 +35,7 @@ artifacts/
 ```json
 {
   "schema_version": "1",
-  "toolset_ref": "refs/tags/v0.3.0",
+  "toolset_ref": "refs/tags/v0.4.0",
   "vocabulary": {
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
     "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino", "snowflake", "databricks"],
@@ -79,7 +86,7 @@ An artifact's `metadata.json` carries the same `applies_to`, `strength`, and `to
 This is not a style preference. Cone-mode sparse checkout selects whole directories:
 
 ```bash
-git sparse-checkout set artifacts/AS-SPIKE-001 artifacts/AS-SPIKE-002
+git sparse-checkout set artifacts/DBT-MODEL-CREATION artifacts/DBT-MODEL-TESTING
 ```
 
 An artifact whose files are scattered across the repository cannot be selected this way. The alternative — non-cone mode with per-file patterns — was rejected as a production default because it forces the installer to enumerate every file of every artifact, coupling transport to internal artifact layout.
@@ -112,7 +119,7 @@ git clone --depth 1 --branch <tag> --filter=blob:none --sparse -- <toolset-url> 
 # 2. Read index.json — it materializes with the initial checkout
 
 # 3. Select the artifacts you need, by directory
-git -C <dst> sparse-checkout set artifacts/AS-SPIKE-001 artifacts/AS-SPIKE-002
+git -C <dst> sparse-checkout set artifacts/DBT-MODEL-CREATION artifacts/DBT-MODEL-TESTING
 ```
 
 Pin to a tag or commit SHA, never a moving branch. Unselected artifacts are absent from the local object store, not merely from the worktree — verified under `GIT_NO_LAZY_FETCH=1`. Reading a missing blob triggers a lazy fetch from the promisor remote.
@@ -135,5 +142,6 @@ Measured against a full shallow clone of the 50-artifact fixture set this catalo
 | `v0.1.0` | Matching vocabulary published; `AS-SPIKE-001`–`008` promoted to real catalog metadata |
 | `v0.2.0` | First artifacts with real content (five, data-engineering); vocabulary gains `sql`, the tool frameworks and the data topics; transport fixtures `AS-SPIKE-009`–`050` removed |
 | `v0.3.0` | Ten dbt and Snowflake artifacts adapted from a third-party MIT source (see [`NOTICE`](NOTICE)); vocabulary gains the `snowflake` and `databricks` frameworks and the `debugging` topic; line endings pinned by `.gitattributes` |
+| `v0.4.0` | Remaining `AS-SPIKE-001`–`008` matching examples removed; the catalog is fifteen real artifacts, all `on-demand`. The `fixture` field and its validation are retained for future transport work |
 
 Tags are immutable. A published tag is never moved to a different commit: a consumer profile pins one of these, and repointing it would hand the same profile different artifacts with nothing anywhere reporting a change. Corrections ship as a new tag.
