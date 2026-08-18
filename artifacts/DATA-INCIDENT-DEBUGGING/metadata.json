@@ -1,0 +1,8 @@
+{
+  "id": "DATA-INCIDENT-DEBUGGING",
+  "version": "0.1.0",
+  "source_path": "artifacts/DATA-INCIDENT-DEBUGGING",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["debugging", "data-quality"]
+}
