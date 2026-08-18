@@ -38,7 +38,7 @@ artifacts/
 ```json
 {
   "schema_version": "1",
-  "toolset_ref": "refs/tags/v0.4.0",
+  "toolset_ref": "refs/tags/v0.5.0",
   "vocabulary": {
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
     "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino", "snowflake", "databricks"],
