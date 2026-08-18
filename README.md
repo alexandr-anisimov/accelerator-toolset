@@ -38,7 +38,7 @@ artifacts/
 ```json
 {
   "schema_version": "1",
-  "toolset_ref": "refs/tags/v0.5.0",
+  "toolset_ref": "refs/tags/v0.5.1",
   "vocabulary": {
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
     "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino", "snowflake", "databricks"],
@@ -129,11 +129,24 @@ Pin to a tag or commit SHA, never a moving branch. Unselected artifacts are abse
 
 Measured against a full shallow clone of the 50-artifact fixture set this catalog carried at the time: selecting 5 of 50 artifacts transferred ~91% less compressed pack payload. That measurement is historical — the 42 pure transport fixtures have since been removed — and it is kept because it is the number the transport design was justified on, not a description of the catalog's current size. Sparse selection is *slower* than a full clone at this scale because of the extra round trip — the benefit is disk and context, not speed.
 
+## Licence
+
+This catalog is MIT licensed — see [`LICENSE`](LICENSE). Artifacts adapted from
+third-party sources carry their own upstream attribution in [`NOTICE`](NOTICE);
+that file travels with any copy of this repository, as the upstream licences
+require.
+
 ## Related
 
 - Third-party attribution for artifacts derived from external sources: [`NOTICE`](NOTICE)
 - Adding an artifact — the `strength`, `applies_to`, and `topics` decisions, a worked example, and how to validate before pushing: [`docs/authoring-artifacts.md`](docs/authoring-artifacts.md)
-- Transport evidence, measurements, and the GO verdict: `spikes/infra-transport/coder-infra-spike-report.md` in [`accelerator-installation`](https://github.com/alexandr-anisimov/accelerator-installation)
+- Using this catalog without the installer: see [Fetching artifacts](#fetching-artifacts) above. The transport is plain Git against a public repository, so no credentials and no additional tooling are required
+
+The installer that consumes this catalog is distributed inside Innowise, and its
+repository is not public. The following references resolve for internal readers
+only:
+
+- Transport evidence, measurements, and the GO verdict: `spikes/infra-transport/coder-infra-spike-report.md` in `accelerator-installation`
 - Installer delivery and installation instructions: same repository
 
 ## Tags
@@ -147,5 +160,6 @@ Measured against a full shallow clone of the 50-artifact fixture set this catalo
 | `v0.3.0` | Ten dbt and Snowflake artifacts adapted from a third-party MIT source (see [`NOTICE`](NOTICE)); vocabulary gains the `snowflake` and `databricks` frameworks and the `debugging` topic; line endings pinned by `.gitattributes` |
 | `v0.4.0` | Remaining `AS-SPIKE-001`–`008` matching examples removed; the catalog is fifteen real artifacts, all `on-demand`. The `fixture` field and its validation are retained for future transport work |
 | `v0.5.0` | Three stack-agnostic pipeline quality artifacts, adapted from internal team practice; the first artifacts declaring `applies_to: {}`, and the first content under the `code-review` topic |
+| `v0.5.1` | No catalog content change. Adds `LICENSE` (MIT) and marks the internal-only references in `Related`, so the catalog can be published as a public repository |
 
 Tags are immutable. A published tag is never moved to a different commit: a consumer profile pins one of these, and repointing it would hand the same profile different artifacts with nothing anywhere reporting a change. Corrections ship as a new tag.
