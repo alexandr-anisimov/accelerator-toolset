@@ -74,6 +74,8 @@ artifacts/
 | `artifacts[].applies_to` | Which projects the artifact is applicable to. Required. `{}` means universally applicable and must be written explicitly |
 | `artifacts[].strength` | `always` or `on-demand`. Required |
 | `artifacts[].topics` | Intents that select an `on-demand` artifact. Must be non-empty when `strength` is `on-demand` |
+| `artifacts[].scope` | Schema 2: `project` or `user`. User artifacts are personal and require explicit selection |
+| `artifacts[].presentation` | Schema 2 `on-demand`: questionnaire card with non-empty `name`, `summary`, and `benefits` |
 | `artifacts[].fixture` | `true` marks transport test data, exempt from all matching validation. Permitted only on `AS-SPIKE-*` ids |
 
 Every value in `applies_to` and `topics` must appear in `vocabulary`. Comparison is case-sensitive: `TypeScript` does not match `typescript`.
@@ -81,6 +83,30 @@ Every value in `applies_to` and `topics` must appear in `vocabulary`. Comparison
 `id`, `version`, and `source_path` are the transport inputs. The matching fields live in the index as well — not only inside the artifact — because a consumer doing a partial clone holds `index.json` alone at the moment it decides what to fetch. Reading matching metadata from inside artifact directories would require fetching every candidate's blobs before choosing which to fetch, which is the cost partial clone exists to avoid.
 
 An artifact's `metadata.json` carries the same `applies_to`, `strength`, and `topics` as its index entry. The two must agree; the index is authoritative for matching.
+
+### Questionnaire-ready schema 2
+
+The current published catalog remains schema 1. The validator also understands
+schema 2, which is the contract for hierarchical general-skill selection:
+
+```json
+{
+  "id": "HUMANIZER",
+  "scope": "user",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["documentation"],
+  "presentation": {
+    "name": "Humanizer",
+    "summary": "Makes generated prose read naturally.",
+    "benefits": ["Removes repetitive AI phrasing", "Preserves meaning"]
+  }
+}
+```
+
+Topics are broad discovery categories. The final consent is the exact artifact
+id. `project` selections are shared; `user` selections remain a local overlay.
+An `always` artifact cannot use user scope.
 
 ## The subtree contract
 

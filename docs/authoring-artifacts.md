@@ -6,9 +6,23 @@ This is the task-shaped companion to [`README.md`](../README.md), which is the r
 
 For a shipped artifact to copy from, read [`artifacts/ETL-DECOMPOSITION`](../artifacts/ETL-DECOMPOSITION) — one dimension, one topic, `on-demand`, which is the shape most artifacts should have.
 
-## The three decisions
+## The five decisions
 
-Everything else about an artifact is mechanical. These three determine whether anyone ever sees it.
+Everything else about an artifact is mechanical. These five determine whether anyone ever sees it.
+
+Schema 2 adds two more authoring decisions for questionnaire-ready artifacts:
+scope and the presentation card. Schema 1 remains valid for published legacy
+tags, but new general-skill catalogs should use schema 2.
+
+### 0. `scope` — team or personal
+
+| Value | Stored and reproduced as |
+|---|---|
+| `project` | Reviewed project selection, shared with the team and CI |
+| `user` | Local developer overlay, absent from CI |
+
+Every schema 2 artifact declares one. A user artifact must be `on-demand`:
+personal tools require explicit consent and cannot claim baseline installation.
 
 ### 1. `strength` — `always` or `on-demand`
 
@@ -59,6 +73,30 @@ Absent is not the same as `{}`. Omitting the field is an error, so that "applies
 Values come from the closed `topics` vocabulary published in `index.json`. An `on-demand` artifact with **no** topics can never be selected by any profile — it is dead content in the catalog. The validator rejects it outright; this is not a subtle bug you have to reason about.
 
 An `always` artifact does not need topics. Write `"topics": []`.
+
+In schema 2, topics are the broad questions used for progressive disclosure.
+They decide which cards the user opens, not which complete category is installed.
+The final selection stores exact artifact ids.
+
+### 4. `presentation` — the informed-consent card
+
+Every schema 2 `on-demand` artifact declares:
+
+```json
+"presentation": {
+  "name": "Humanizer",
+  "summary": "Makes generated prose read naturally.",
+  "benefits": [
+    "Removes repetitive AI phrasing",
+    "Preserves meaning"
+  ]
+}
+```
+
+Keep the name and summary short. Benefits must be concrete outcomes the skill
+actually provides. The questionnaire uses this object verbatim and never reads
+`SKILL.md` to invent benefits. Empty cards, empty benefits, and scalar
+`presentation` values fail validation.
 
 ## The current vocabulary
 
@@ -293,9 +331,11 @@ The pattern across all six: the failure is silent. Nothing errors, the install r
 ## Checklist
 
 - [ ] Directory under `artifacts/`, named for the id, self-contained
+- [ ] Schema 2: `scope` is `project` or `user`; user scope is never `always`
 - [ ] `strength` defaulted to `on-demand` unless you can defend `always` against the test
 - [ ] `applies_to` declares only the dimensions that would make the artifact *wrong* if absent; `{}` written explicitly if universal
 - [ ] `topics` non-empty if `on-demand`, all values from the vocabulary, all lower-case
+- [ ] Schema 2 `on-demand`: presentation card has a short name, truthful summary and concrete benefits
 - [ ] `metadata.json` matches the index entry field for field
 - [ ] No `fixture: true`
 - [ ] `./scripts/validate-catalog.ps1 -IndexPath ./index.json` reports `IsValid: True`
