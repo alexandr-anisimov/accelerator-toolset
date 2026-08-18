@@ -2,7 +2,7 @@
 
 The artifact catalog. Consumers fetch selected artifacts from this repository using Git partial clone with cone-mode sparse checkout, so a client downloads only the artifacts it needs rather than the whole catalog.
 
-The catalog holds fifteen data-engineering artifacts, covering dbt, Snowflake, Airflow, and Python pipeline code. Every entry has real content; the `AS-SPIKE-*` placeholders that proved the transport design have all been removed.
+The catalog holds eighteen data-engineering artifacts, covering dbt, Snowflake, Airflow, Python pipeline code, and stack-agnostic pipeline quality practice. Every entry has real content; the `AS-SPIKE-*` placeholders that proved the transport design have all been removed.
 
 Every artifact is currently `on-demand`, so a profile receives only what its declared topics select. There is no baseline set — see [`docs/authoring-artifacts.md`](docs/authoring-artifacts.md) for what an `always` artifact would have to justify.
 
@@ -14,6 +14,7 @@ artifacts/
   AIRFLOW-DAG-CONVENTIONS/
     SKILL.md
     metadata.json
+  DATA-INCIDENT-DEBUGGING/
   DBT-ERROR-DEBUGGING/
   DBT-INCREMENTAL-MODELS/
   DBT-MODEL-CREATION/
@@ -23,6 +24,8 @@ artifacts/
   DBT-PROJECT-CONVENTIONS/
   DBT-SQL-MIGRATION/
   ETL-DECOMPOSITION/
+  PIPELINE-OUTPUT-REVIEW/
+  PIPELINE-REGRESSION-GATES/
   PYTEST-DATA-PIPELINES/
   SCD2-IMPLEMENTATION/
   SNOWFLAKE-EXPENSIVE-QUERIES/
@@ -143,5 +146,6 @@ Measured against a full shallow clone of the 50-artifact fixture set this catalo
 | `v0.2.0` | First artifacts with real content (five, data-engineering); vocabulary gains `sql`, the tool frameworks and the data topics; transport fixtures `AS-SPIKE-009`–`050` removed |
 | `v0.3.0` | Ten dbt and Snowflake artifacts adapted from a third-party MIT source (see [`NOTICE`](NOTICE)); vocabulary gains the `snowflake` and `databricks` frameworks and the `debugging` topic; line endings pinned by `.gitattributes` |
 | `v0.4.0` | Remaining `AS-SPIKE-001`–`008` matching examples removed; the catalog is fifteen real artifacts, all `on-demand`. The `fixture` field and its validation are retained for future transport work |
+| `v0.5.0` | Three stack-agnostic pipeline quality artifacts, adapted from internal team practice; the first artifacts declaring `applies_to: {}`, and the first content under the `code-review` topic |
 
 Tags are immutable. A published tag is never moved to a different commit: a consumer profile pins one of these, and repointing it would hand the same profile different artifacts with nothing anywhere reporting a change. Corrections ship as a new tag.

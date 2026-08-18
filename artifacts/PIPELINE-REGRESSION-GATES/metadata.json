@@ -1,0 +1,8 @@
+{
+  "id": "PIPELINE-REGRESSION-GATES",
+  "version": "0.1.0",
+  "source_path": "artifacts/PIPELINE-REGRESSION-GATES",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["testing", "data-quality"]
+}

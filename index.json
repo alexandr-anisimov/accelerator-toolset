@@ -31,6 +31,14 @@
       "topics": ["orchestration"]
     },
     {
+      "id": "DATA-INCIDENT-DEBUGGING",
+      "version": "0.1.0",
+      "source_path": "artifacts/DATA-INCIDENT-DEBUGGING",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["debugging", "data-quality"]
+    },
+    {
       "id": "DBT-ERROR-DEBUGGING",
       "version": "0.1.0",
       "source_path": "artifacts/DBT-ERROR-DEBUGGING",
@@ -119,6 +127,22 @@
       },
       "strength": "on-demand",
       "topics": ["refactoring", "orchestration"]
+    },
+    {
+      "id": "PIPELINE-OUTPUT-REVIEW",
+      "version": "0.1.0",
+      "source_path": "artifacts/PIPELINE-OUTPUT-REVIEW",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["code-review", "data-quality"]
+    },
+    {
+      "id": "PIPELINE-REGRESSION-GATES",
+      "version": "0.1.0",
+      "source_path": "artifacts/PIPELINE-REGRESSION-GATES",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["testing", "data-quality"]
     },
     {
       "id": "PYTEST-DATA-PIPELINES",

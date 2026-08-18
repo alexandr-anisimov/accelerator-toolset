@@ -1,0 +1,8 @@
+{
+  "id": "PIPELINE-OUTPUT-REVIEW",
+  "version": "0.1.0",
+  "source_path": "artifacts/PIPELINE-OUTPUT-REVIEW",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["code-review", "data-quality"]
+}
