@@ -2,9 +2,11 @@
 
 The artifact catalog. Consumers fetch selected artifacts from this repository using Git partial clone with cone-mode sparse checkout, so a client downloads only the artifacts it needs rather than the whole catalog.
 
-The catalog holds eighteen data-engineering artifacts, covering dbt, Snowflake, Airflow, Python pipeline code, and stack-agnostic pipeline quality practice. Every entry has real content; the `AS-SPIKE-*` placeholders that proved the transport design have all been removed.
+The catalog holds twenty-eight artifacts in two groups. Eighteen are data-engineering specific, covering dbt, Snowflake, Airflow, Python pipeline code, and stack-agnostic pipeline quality practice. Ten are general skills that apply to any stack: change review, project documentation, test design, refactoring, error diagnosis, technical writing, and the four development-process artifacts covering requirements, planning, execution and verification. Every entry has real content; the `AS-SPIKE-*` placeholders that proved the transport design have all been removed.
 
-Every artifact is currently `on-demand`, so a profile receives only what its declared topics select. There is no baseline set — see [`docs/authoring-artifacts.md`](docs/authoring-artifacts.md) for what an `always` artifact would have to justify.
+Every artifact is currently `on-demand`, so a profile receives only what its declared topics select and the user explicitly chooses. There is no baseline set — see [`docs/authoring-artifacts.md`](docs/authoring-artifacts.md) for what an `always` artifact would have to justify.
+
+Twenty-seven artifacts are `project` scope. `TECHNICAL-WRITING` is the single `user`-scope artifact: a personal editing tool that does not belong in a shared project plan.
 
 ## Layout
 
@@ -14,6 +16,7 @@ artifacts/
   AIRFLOW-DAG-CONVENTIONS/
     SKILL.md
     metadata.json
+  CHANGE-REVIEW/
   DATA-INCIDENT-DEBUGGING/
   DBT-ERROR-DEBUGGING/
   DBT-INCREMENTAL-MODELS/
@@ -23,21 +26,30 @@ artifacts/
   DBT-MODEL-TESTING/
   DBT-PROJECT-CONVENTIONS/
   DBT-SQL-MIGRATION/
+  ERROR-DIAGNOSIS/
   ETL-DECOMPOSITION/
+  IMPLEMENTATION-PLANNING/
   PIPELINE-OUTPUT-REVIEW/
   PIPELINE-REGRESSION-GATES/
+  PLAN-EXECUTION/
+  PROJECT-DOCUMENTATION/
   PYTEST-DATA-PIPELINES/
+  REFACTORING-SAFETY/
+  REQUIREMENTS-BRAINSTORMING/
   SCD2-IMPLEMENTATION/
   SNOWFLAKE-EXPENSIVE-QUERIES/
   SNOWFLAKE-QUERY-BY-ID/
   SNOWFLAKE-QUERY-TEXT/
+  TECHNICAL-WRITING/
+  TEST-DESIGN-REVIEW/
+  WORK-VERIFICATION/
 ```
 
 ## `index.json`
 
 ```json
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "toolset_ref": "refs/tags/v0.5.0",
   "vocabulary": {
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
@@ -47,7 +59,7 @@ artifacts/
     "topics": [
       "code-review", "testing", "documentation", "refactoring",
       "orchestration", "data-modeling", "data-quality", "ingestion", "performance",
-      "debugging"
+      "debugging", "writing", "development-process"
     ]
   },
   "artifacts": [
@@ -57,7 +69,17 @@ artifacts/
       "source_path": "artifacts/AIRFLOW-DAG-CONVENTIONS",
       "applies_to": { "frameworks": ["airflow"] },
       "strength": "on-demand",
-      "topics": ["orchestration"]
+      "topics": ["orchestration"],
+      "scope": "project",
+      "presentation": {
+        "name": "Airflow DAG conventions",
+        "summary": "Structures Airflow DAGs so nothing expensive or fragile runs at import time.",
+        "benefits": [
+          "Keeps connections and queries out of module scope, where the scheduler re-runs them",
+          "Applies consistent default_args, retries and scheduling across DAGs",
+          "Flags import-time work that makes the scheduler slow or unstable"
+        ]
+      }
     }
   ]
 }
@@ -65,7 +87,7 @@ artifacts/
 
 | Field | Meaning |
 |---|---|
-| `schema_version` | Index format version. Currently `"1"` |
+| `schema_version` | Index format version. Currently `"2"` |
 | `toolset_ref` | The ref this index describes |
 | `vocabulary` | The closed set of legal values per dimension. Dimensions are exactly `languages`, `frameworks`, `layout`, `agents`, `topics` |
 | `artifacts[].id` | Unique artifact identifier; matches the directory name. Unique case-insensitively, since ids become directory names |
@@ -82,12 +104,12 @@ Every value in `applies_to` and `topics` must appear in `vocabulary`. Comparison
 
 `id`, `version`, and `source_path` are the transport inputs. The matching fields live in the index as well — not only inside the artifact — because a consumer doing a partial clone holds `index.json` alone at the moment it decides what to fetch. Reading matching metadata from inside artifact directories would require fetching every candidate's blobs before choosing which to fetch, which is the cost partial clone exists to avoid.
 
-An artifact's `metadata.json` carries the same `applies_to`, `strength`, and `topics` as its index entry. The two must agree; the index is authoritative for matching.
+An artifact's `metadata.json` carries the same `applies_to`, `strength`, `topics`, `scope`, and `presentation` as its index entry. The two must agree; the index is authoritative for matching.
 
 ### Questionnaire-ready schema 2
 
-The current published catalog remains schema 1. The validator also understands
-schema 2, which is the contract for hierarchical general-skill selection:
+This catalog is schema 2, the contract for hierarchical general-skill selection.
+The validator still accepts schema 1 for previously published tags:
 
 ```json
 {

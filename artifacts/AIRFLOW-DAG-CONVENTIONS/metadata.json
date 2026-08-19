@@ -6,5 +6,15 @@
     "frameworks": ["airflow"]
   },
   "strength": "on-demand",
-  "topics": ["orchestration"]
+  "topics": ["orchestration"],
+  "scope": "project",
+  "presentation": {
+    "name": "Airflow DAG conventions",
+    "summary": "Structures Airflow DAGs so nothing expensive or fragile runs at import time.",
+    "benefits": [
+      "Keeps connections and queries out of module scope, where the scheduler re-runs them",
+      "Applies consistent default_args, retries and scheduling across DAGs",
+      "Flags import-time work that makes the scheduler slow or unstable"
+    ]
+  }
 }

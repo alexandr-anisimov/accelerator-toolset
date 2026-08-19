@@ -1,0 +1,19 @@
+{
+  "id": "TECHNICAL-WRITING",
+  "version": "0.1.0",
+  "source_path": "artifacts/TECHNICAL-WRITING",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["writing"],
+  "scope": "user",
+  "presentation": {
+    "name": "Technical writing",
+    "summary": "Improves technical prose without changing its meaning or terminology.",
+    "benefits": [
+      "Removes padding and boilerplate that add length but no information",
+      "Preserves defined terms and technical claims exactly as written",
+      "Replaces unnatural phrasing with how an engineer would actually say it",
+      "Flags sentences whose meaning is unclear instead of guessing at them"
+    ]
+  }
+}

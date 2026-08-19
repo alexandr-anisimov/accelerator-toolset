@@ -4,5 +4,15 @@
   "source_path": "artifacts/PIPELINE-REGRESSION-GATES",
   "applies_to": {},
   "strength": "on-demand",
-  "topics": ["testing", "data-quality"]
+  "topics": ["testing", "data-quality"],
+  "scope": "project",
+  "presentation": {
+    "name": "Pipeline regression gates",
+    "summary": "Selects the cheapest checks that would actually catch the regression a change can cause.",
+    "benefits": [
+      "Maps the type of change to the layers of testing it requires",
+      "Avoids full end-to-end runs for defects a unit test would catch",
+      "Records which layers were skipped rather than implying full coverage"
+    ]
+  }
 }

@@ -6,5 +6,15 @@
     "frameworks": ["dbt"]
   },
   "strength": "on-demand",
-  "topics": ["documentation"]
+  "topics": ["documentation"],
+  "scope": "project",
+  "presentation": {
+    "name": "dbt model documentation",
+    "summary": "Writes model and column descriptions that state what the SQL cannot.",
+    "benefits": [
+      "Puts the model's grain first, so consumers know what a row is",
+      "Records business rules, units and timezones that are invisible in the data",
+      "Skips filler descriptions that only restate the column name"
+    ]
+  }
 }

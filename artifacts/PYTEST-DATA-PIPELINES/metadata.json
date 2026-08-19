@@ -6,5 +6,15 @@
     "languages": ["python"]
   },
   "strength": "on-demand",
-  "topics": ["testing"]
+  "topics": ["testing"],
+  "scope": "project",
+  "presentation": {
+    "name": "pytest for data pipelines",
+    "summary": "Tests data pipeline code with pytest, mocking at the I/O boundary.",
+    "benefits": [
+      "Draws a clear unit and integration split for pipeline code",
+      "Mocks at the I/O edge so transforms stay genuinely tested",
+      "Adds DAG import tests that catch breakage before deployment"
+    ]
+  }
 }

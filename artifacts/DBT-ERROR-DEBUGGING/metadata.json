@@ -6,5 +6,15 @@
     "frameworks": ["dbt"]
   },
   "strength": "on-demand",
-  "topics": ["debugging"]
+  "topics": ["debugging"],
+  "scope": "project",
+  "presentation": {
+    "name": "dbt error debugging",
+    "summary": "Diagnoses a failing dbt build from the compiled SQL rather than the error text.",
+    "benefits": [
+      "Reads the compiled SQL, where the real error usually is",
+      "Checks upstream models before blaming the failing one",
+      "Says when to stop patching symptoms and fix the source"
+    ]
+  }
 }

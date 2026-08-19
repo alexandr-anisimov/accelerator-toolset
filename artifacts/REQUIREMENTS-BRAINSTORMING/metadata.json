@@ -1,0 +1,19 @@
+{
+  "id": "REQUIREMENTS-BRAINSTORMING",
+  "version": "0.1.0",
+  "source_path": "artifacts/REQUIREMENTS-BRAINSTORMING",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["development-process"],
+  "scope": "project",
+  "presentation": {
+    "name": "Requirements brainstorming",
+    "summary": "Works out what is actually needed before any code is written.",
+    "benefits": [
+      "Surfaces the real goal behind a requested solution",
+      "Separates stated requirements from assumptions that were never confirmed",
+      "Makes constraints and non-goals explicit before design starts",
+      "Says when enough is known to begin, so discovery does not run forever"
+    ]
+  }
+}

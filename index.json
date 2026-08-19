@@ -1,5 +1,5 @@
 {
-  "schema_version": "1",
+  "schema_version": "2",
   "toolset_ref": "refs/tags/v0.5.0",
   "vocabulary": {
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
@@ -16,7 +16,9 @@
       "data-quality",
       "ingestion",
       "performance",
-      "debugging"
+      "debugging",
+      "writing",
+      "development-process"
     ]
   },
   "artifacts": [
@@ -28,7 +30,36 @@
         "frameworks": ["airflow"]
       },
       "strength": "on-demand",
-      "topics": ["orchestration"]
+      "topics": ["orchestration"],
+      "scope": "project",
+      "presentation": {
+        "name": "Airflow DAG conventions",
+        "summary": "Structures Airflow DAGs so nothing expensive or fragile runs at import time.",
+        "benefits": [
+          "Keeps connections and queries out of module scope, where the scheduler re-runs them",
+          "Applies consistent default_args, retries and scheduling across DAGs",
+          "Flags import-time work that makes the scheduler slow or unstable"
+        ]
+      }
+    },
+    {
+      "id": "CHANGE-REVIEW",
+      "version": "0.1.0",
+      "source_path": "artifacts/CHANGE-REVIEW",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["code-review"],
+      "scope": "project",
+      "presentation": {
+        "name": "Change review",
+        "summary": "Reviews a code change for correctness, risk, test coverage and backward compatibility.",
+        "benefits": [
+          "Establishes what the change is supposed to do before judging whether it does it",
+          "Separates blocking defects from preferences, so findings are actionable",
+          "Checks backward compatibility for callers the diff does not show",
+          "Reports unverified areas instead of implying the whole change was checked"
+        ]
+      }
     },
     {
       "id": "DATA-INCIDENT-DEBUGGING",
@@ -36,7 +67,17 @@
       "source_path": "artifacts/DATA-INCIDENT-DEBUGGING",
       "applies_to": {},
       "strength": "on-demand",
-      "topics": ["debugging", "data-quality"]
+      "topics": ["debugging", "data-quality"],
+      "scope": "project",
+      "presentation": {
+        "name": "Data incident investigation",
+        "summary": "Traces wrong data back to the code that produced it when the pipeline reported success.",
+        "benefits": [
+          "Keeps the investigation read-only until a cause is proven",
+          "Turns symptoms into hypotheses a single query can rule out",
+          "Records evidence and unproven gaps in a written incident log"
+        ]
+      }
     },
     {
       "id": "DBT-ERROR-DEBUGGING",
@@ -46,7 +87,17 @@
         "frameworks": ["dbt"]
       },
       "strength": "on-demand",
-      "topics": ["debugging"]
+      "topics": ["debugging"],
+      "scope": "project",
+      "presentation": {
+        "name": "dbt error debugging",
+        "summary": "Diagnoses a failing dbt build from the compiled SQL rather than the error text.",
+        "benefits": [
+          "Reads the compiled SQL, where the real error usually is",
+          "Checks upstream models before blaming the failing one",
+          "Says when to stop patching symptoms and fix the source"
+        ]
+      }
     },
     {
       "id": "DBT-INCREMENTAL-MODELS",
@@ -56,7 +107,17 @@
         "frameworks": ["dbt"]
       },
       "strength": "on-demand",
-      "topics": ["data-modeling", "performance"]
+      "topics": ["data-modeling", "performance"],
+      "scope": "project",
+      "presentation": {
+        "name": "dbt incremental models",
+        "summary": "Chooses an incremental strategy and unique key that survive late data and schema drift.",
+        "benefits": [
+          "Matches the strategy to how the source actually changes",
+          "Handles late-arriving rows instead of silently dropping them",
+          "Detects divergence between incremental and full-refresh output"
+        ]
+      }
     },
     {
       "id": "DBT-MODEL-CREATION",
@@ -66,7 +127,17 @@
         "frameworks": ["dbt"]
       },
       "strength": "on-demand",
-      "topics": ["data-modeling"]
+      "topics": ["data-modeling"],
+      "scope": "project",
+      "presentation": {
+        "name": "dbt model creation",
+        "summary": "Runs the build-and-verify loop for a new dbt model instead of stopping at compile.",
+        "benefits": [
+          "Reads the project's existing layering and naming before writing",
+          "Builds and inspects real output rather than only compiling",
+          "Checks grain and row counts before the model is called done"
+        ]
+      }
     },
     {
       "id": "DBT-MODEL-DOCUMENTATION",
@@ -76,7 +147,17 @@
         "frameworks": ["dbt"]
       },
       "strength": "on-demand",
-      "topics": ["documentation"]
+      "topics": ["documentation"],
+      "scope": "project",
+      "presentation": {
+        "name": "dbt model documentation",
+        "summary": "Writes model and column descriptions that state what the SQL cannot.",
+        "benefits": [
+          "Puts the model's grain first, so consumers know what a row is",
+          "Records business rules, units and timezones that are invisible in the data",
+          "Skips filler descriptions that only restate the column name"
+        ]
+      }
     },
     {
       "id": "DBT-MODEL-REFACTORING",
@@ -86,7 +167,17 @@
         "frameworks": ["dbt"]
       },
       "strength": "on-demand",
-      "topics": ["refactoring"]
+      "topics": ["refactoring"],
+      "scope": "project",
+      "presentation": {
+        "name": "dbt model refactoring",
+        "summary": "Restructures a dbt model while proving its output did not change.",
+        "benefits": [
+          "Finds the full downstream blast radius from the dbt graph, not grep",
+          "Captures the current output before any edit",
+          "Separates safe internal changes from interface changes that break consumers"
+        ]
+      }
     },
     {
       "id": "DBT-MODEL-TESTING",
@@ -96,7 +187,17 @@
         "frameworks": ["dbt"]
       },
       "strength": "on-demand",
-      "topics": ["testing", "data-quality"]
+      "topics": ["testing", "data-quality"],
+      "scope": "project",
+      "presentation": {
+        "name": "dbt model testing",
+        "summary": "Picks dbt schema tests that catch real defects for each column role.",
+        "benefits": [
+          "Chooses tests by what the column is, not by habit",
+          "Covers keys, relationships and accepted values where they matter",
+          "Gives a procedure for what to do when a test fails"
+        ]
+      }
     },
     {
       "id": "DBT-PROJECT-CONVENTIONS",
@@ -106,7 +207,17 @@
         "frameworks": ["dbt"]
       },
       "strength": "on-demand",
-      "topics": ["data-modeling", "data-quality"]
+      "topics": ["data-modeling", "data-quality"],
+      "scope": "project",
+      "presentation": {
+        "name": "dbt project conventions",
+        "summary": "Establishes what belongs in each dbt layer and why the boundaries hold.",
+        "benefits": [
+          "Places sources, staging, intermediate and mart logic consistently",
+          "Applies contracts and tests at the layer where they are meaningful",
+          "Prevents business logic leaking into the staging layer"
+        ]
+      }
     },
     {
       "id": "DBT-SQL-MIGRATION",
@@ -116,7 +227,36 @@
         "frameworks": ["dbt"]
       },
       "strength": "on-demand",
-      "topics": ["refactoring", "data-modeling"]
+      "topics": ["refactoring", "data-modeling"],
+      "scope": "project",
+      "presentation": {
+        "name": "Legacy SQL to dbt",
+        "summary": "Ports legacy SQL into dbt layer by layer and reconciles against the original.",
+        "benefits": [
+          "Separates what to reuse from what to rewrite",
+          "Builds the staging layer before porting business logic",
+          "Reconciles migrated output against the legacy result"
+        ]
+      }
+    },
+    {
+      "id": "ERROR-DIAGNOSIS",
+      "version": "0.1.0",
+      "source_path": "artifacts/ERROR-DIAGNOSIS",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["debugging"],
+      "scope": "project",
+      "presentation": {
+        "name": "Error diagnosis",
+        "summary": "Finds the cause of a failure by narrowing it down and proving it before changing code.",
+        "benefits": [
+          "Establishes a reliable reproduction before theorising about causes",
+          "Turns guesses into hypotheses that a single observation can rule out",
+          "Confirms the cause explains every symptom, not just the loudest one",
+          "Stops speculative edits that hide a defect instead of fixing it"
+        ]
+      }
     },
     {
       "id": "ETL-DECOMPOSITION",
@@ -126,7 +266,36 @@
         "languages": ["python"]
       },
       "strength": "on-demand",
-      "topics": ["refactoring", "orchestration"]
+      "topics": ["refactoring", "orchestration"],
+      "scope": "project",
+      "presentation": {
+        "name": "ETL decomposition",
+        "summary": "Splits a monolithic extract-transform-load function into testable units with I/O at the edges.",
+        "benefits": [
+          "Isolates the transform so it can be tested without network or database",
+          "Puts fetch and write behind thin I/O modules",
+          "Says when a function is small enough to leave alone"
+        ]
+      }
+    },
+    {
+      "id": "IMPLEMENTATION-PLANNING",
+      "version": "0.1.0",
+      "source_path": "artifacts/IMPLEMENTATION-PLANNING",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["development-process"],
+      "scope": "project",
+      "presentation": {
+        "name": "Implementation planning",
+        "summary": "Turns agreed requirements into an ordered plan with verifiable steps.",
+        "benefits": [
+          "Breaks work into steps that can each be checked independently",
+          "Orders steps so the riskiest assumption is tested early",
+          "States done criteria per step, not just for the whole task",
+          "Names what the plan does not cover, instead of implying full scope"
+        ]
+      }
     },
     {
       "id": "PIPELINE-OUTPUT-REVIEW",
@@ -134,7 +303,17 @@
       "source_path": "artifacts/PIPELINE-OUTPUT-REVIEW",
       "applies_to": {},
       "strength": "on-demand",
-      "topics": ["code-review", "data-quality"]
+      "topics": ["code-review", "data-quality"],
+      "scope": "project",
+      "presentation": {
+        "name": "Pipeline output review",
+        "summary": "Reviews the data a pipeline run actually produced, not just whether tests passed.",
+        "benefits": [
+          "Reconciles row accounting so silently dropped rows surface",
+          "Checks keys, contracts and drift against a recorded baseline",
+          "Reports INSUFFICIENT EVIDENCE instead of guessing a verdict"
+        ]
+      }
     },
     {
       "id": "PIPELINE-REGRESSION-GATES",
@@ -142,7 +321,55 @@
       "source_path": "artifacts/PIPELINE-REGRESSION-GATES",
       "applies_to": {},
       "strength": "on-demand",
-      "topics": ["testing", "data-quality"]
+      "topics": ["testing", "data-quality"],
+      "scope": "project",
+      "presentation": {
+        "name": "Pipeline regression gates",
+        "summary": "Selects the cheapest checks that would actually catch the regression a change can cause.",
+        "benefits": [
+          "Maps the type of change to the layers of testing it requires",
+          "Avoids full end-to-end runs for defects a unit test would catch",
+          "Records which layers were skipped rather than implying full coverage"
+        ]
+      }
+    },
+    {
+      "id": "PLAN-EXECUTION",
+      "version": "0.1.0",
+      "source_path": "artifacts/PLAN-EXECUTION",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["development-process"],
+      "scope": "project",
+      "presentation": {
+        "name": "Plan execution",
+        "summary": "Works through an agreed plan one step at a time and handles it when reality diverges.",
+        "benefits": [
+          "Keeps each step small enough to verify before the next one starts",
+          "Gives a rule for when to adapt the plan and when to stop and ask",
+          "Prevents unrequested scope from being added mid-execution",
+          "Keeps the plan and the actual state of the work in agreement"
+        ]
+      }
+    },
+    {
+      "id": "PROJECT-DOCUMENTATION",
+      "version": "0.1.0",
+      "source_path": "artifacts/PROJECT-DOCUMENTATION",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["documentation"],
+      "scope": "project",
+      "presentation": {
+        "name": "Project documentation",
+        "summary": "Documents architecture decisions, component boundaries and constraints a reader cannot infer from the code.",
+        "benefits": [
+          "Records why a decision was made, not just what the code does",
+          "Makes component boundaries and their contracts explicit",
+          "Captures non-obvious constraints before they are rediscovered the hard way",
+          "Keeps documentation updated in the same change that invalidates it"
+        ]
+      }
     },
     {
       "id": "PYTEST-DATA-PIPELINES",
@@ -152,7 +379,55 @@
         "languages": ["python"]
       },
       "strength": "on-demand",
-      "topics": ["testing"]
+      "topics": ["testing"],
+      "scope": "project",
+      "presentation": {
+        "name": "pytest for data pipelines",
+        "summary": "Tests data pipeline code with pytest, mocking at the I/O boundary.",
+        "benefits": [
+          "Draws a clear unit and integration split for pipeline code",
+          "Mocks at the I/O edge so transforms stay genuinely tested",
+          "Adds DAG import tests that catch breakage before deployment"
+        ]
+      }
+    },
+    {
+      "id": "REFACTORING-SAFETY",
+      "version": "0.1.0",
+      "source_path": "artifacts/REFACTORING-SAFETY",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["refactoring"],
+      "scope": "project",
+      "presentation": {
+        "name": "Refactoring safety",
+        "summary": "Plans and sequences a refactor so behaviour is provably unchanged at every step.",
+        "benefits": [
+          "Establishes a behavioural baseline before the first edit",
+          "Separates internal restructuring from interface changes that break callers",
+          "Sequences the work so each step can be verified and reverted alone",
+          "Says when a refactor should stop rather than expand"
+        ]
+      }
+    },
+    {
+      "id": "REQUIREMENTS-BRAINSTORMING",
+      "version": "0.1.0",
+      "source_path": "artifacts/REQUIREMENTS-BRAINSTORMING",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["development-process"],
+      "scope": "project",
+      "presentation": {
+        "name": "Requirements brainstorming",
+        "summary": "Works out what is actually needed before any code is written.",
+        "benefits": [
+          "Surfaces the real goal behind a requested solution",
+          "Separates stated requirements from assumptions that were never confirmed",
+          "Makes constraints and non-goals explicit before design starts",
+          "Says when enough is known to begin, so discovery does not run forever"
+        ]
+      }
     },
     {
       "id": "SCD2-IMPLEMENTATION",
@@ -162,7 +437,17 @@
         "languages": ["sql"]
       },
       "strength": "on-demand",
-      "topics": ["data-modeling"]
+      "topics": ["data-modeling"],
+      "scope": "project",
+      "presentation": {
+        "name": "SCD Type 2 implementation",
+        "summary": "Implements Slowly Changing Dimension Type 2 in SQL with correct validity intervals.",
+        "benefits": [
+          "Builds non-overlapping validity intervals with exactly one current row",
+          "Detects real attribute changes instead of rewriting history on every load",
+          "Avoids the idempotency traps that duplicate rows on re-run"
+        ]
+      }
     },
     {
       "id": "SNOWFLAKE-EXPENSIVE-QUERIES",
@@ -172,7 +457,17 @@
         "frameworks": ["snowflake"]
       },
       "strength": "on-demand",
-      "topics": ["performance"]
+      "topics": ["performance"],
+      "scope": "project",
+      "presentation": {
+        "name": "Snowflake cost hunting",
+        "summary": "Finds the Snowflake queries actually worth optimising and reads the metrics that point at a fix.",
+        "benefits": [
+          "Picks the right history view for the question being asked",
+          "Ranks by credits rather than elapsed time when cost is the concern",
+          "Turns query metrics into a specific next action"
+        ]
+      }
     },
     {
       "id": "SNOWFLAKE-QUERY-BY-ID",
@@ -182,7 +477,17 @@
         "frameworks": ["snowflake"]
       },
       "strength": "on-demand",
-      "topics": ["performance", "debugging"]
+      "topics": ["performance", "debugging"],
+      "scope": "project",
+      "presentation": {
+        "name": "Snowflake query diagnosis",
+        "summary": "Diagnoses one Snowflake query from its profile and operator statistics.",
+        "benefits": [
+          "Reads pruning and spill statistics to locate the real bottleneck",
+          "Separates a query problem from a warehouse sizing problem",
+          "Points at the specific operator responsible for the cost"
+        ]
+      }
     },
     {
       "id": "SNOWFLAKE-QUERY-TEXT",
@@ -192,7 +497,74 @@
         "frameworks": ["snowflake"]
       },
       "strength": "on-demand",
-      "topics": ["performance", "refactoring"]
+      "topics": ["performance", "refactoring"],
+      "scope": "project",
+      "presentation": {
+        "name": "Snowflake query rewriting",
+        "summary": "Rewrites a Snowflake query for performance without changing its results.",
+        "benefits": [
+          "Separates transformations that are safe from ones that only look safe",
+          "Explains why each rewrite preserves the result set",
+          "Keeps null and duplicate semantics intact through the rewrite"
+        ]
+      }
+    },
+    {
+      "id": "TECHNICAL-WRITING",
+      "version": "0.1.0",
+      "source_path": "artifacts/TECHNICAL-WRITING",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["writing"],
+      "scope": "user",
+      "presentation": {
+        "name": "Technical writing",
+        "summary": "Improves technical prose without changing its meaning or terminology.",
+        "benefits": [
+          "Removes padding and boilerplate that add length but no information",
+          "Preserves defined terms and technical claims exactly as written",
+          "Replaces unnatural phrasing with how an engineer would actually say it",
+          "Flags sentences whose meaning is unclear instead of guessing at them"
+        ]
+      }
+    },
+    {
+      "id": "TEST-DESIGN-REVIEW",
+      "version": "0.1.0",
+      "source_path": "artifacts/TEST-DESIGN-REVIEW",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["testing"],
+      "scope": "project",
+      "presentation": {
+        "name": "Test design and review",
+        "summary": "Decides what is worth testing and judges whether existing tests would catch a defect.",
+        "benefits": [
+          "Derives cases from behaviour and boundaries rather than from code shape",
+          "Identifies tests that pass regardless of whether the code is correct",
+          "Covers failure paths, not only the successful one",
+          "Distinguishes untested code from code that cannot be tested as written"
+        ]
+      }
+    },
+    {
+      "id": "WORK-VERIFICATION",
+      "version": "0.1.0",
+      "source_path": "artifacts/WORK-VERIFICATION",
+      "applies_to": {},
+      "strength": "on-demand",
+      "topics": ["development-process"],
+      "scope": "project",
+      "presentation": {
+        "name": "Work verification",
+        "summary": "Checks that work actually does what was asked before it is reported as finished.",
+        "benefits": [
+          "Requires observed command output before any claim that something passes",
+          "Separates passed, failed, skipped and never-run instead of merging them",
+          "Checks the original request was met, not only that the code runs",
+          "Reports what was not verified rather than leaving it implied"
+        ]
+      }
     }
   ]
 }

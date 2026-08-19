@@ -4,5 +4,15 @@
   "source_path": "artifacts/PIPELINE-OUTPUT-REVIEW",
   "applies_to": {},
   "strength": "on-demand",
-  "topics": ["code-review", "data-quality"]
+  "topics": ["code-review", "data-quality"],
+  "scope": "project",
+  "presentation": {
+    "name": "Pipeline output review",
+    "summary": "Reviews the data a pipeline run actually produced, not just whether tests passed.",
+    "benefits": [
+      "Reconciles row accounting so silently dropped rows surface",
+      "Checks keys, contracts and drift against a recorded baseline",
+      "Reports INSUFFICIENT EVIDENCE instead of guessing a verdict"
+    ]
+  }
 }

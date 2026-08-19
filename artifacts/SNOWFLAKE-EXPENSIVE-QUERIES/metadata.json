@@ -6,5 +6,15 @@
     "frameworks": ["snowflake"]
   },
   "strength": "on-demand",
-  "topics": ["performance"]
+  "topics": ["performance"],
+  "scope": "project",
+  "presentation": {
+    "name": "Snowflake cost hunting",
+    "summary": "Finds the Snowflake queries actually worth optimising and reads the metrics that point at a fix.",
+    "benefits": [
+      "Picks the right history view for the question being asked",
+      "Ranks by credits rather than elapsed time when cost is the concern",
+      "Turns query metrics into a specific next action"
+    ]
+  }
 }

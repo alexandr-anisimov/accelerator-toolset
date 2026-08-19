@@ -1,0 +1,19 @@
+{
+  "id": "TEST-DESIGN-REVIEW",
+  "version": "0.1.0",
+  "source_path": "artifacts/TEST-DESIGN-REVIEW",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["testing"],
+  "scope": "project",
+  "presentation": {
+    "name": "Test design and review",
+    "summary": "Decides what is worth testing and judges whether existing tests would catch a defect.",
+    "benefits": [
+      "Derives cases from behaviour and boundaries rather than from code shape",
+      "Identifies tests that pass regardless of whether the code is correct",
+      "Covers failure paths, not only the successful one",
+      "Distinguishes untested code from code that cannot be tested as written"
+    ]
+  }
+}

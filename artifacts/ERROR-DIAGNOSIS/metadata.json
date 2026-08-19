@@ -1,0 +1,19 @@
+{
+  "id": "ERROR-DIAGNOSIS",
+  "version": "0.1.0",
+  "source_path": "artifacts/ERROR-DIAGNOSIS",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["debugging"],
+  "scope": "project",
+  "presentation": {
+    "name": "Error diagnosis",
+    "summary": "Finds the cause of a failure by narrowing it down and proving it before changing code.",
+    "benefits": [
+      "Establishes a reliable reproduction before theorising about causes",
+      "Turns guesses into hypotheses that a single observation can rule out",
+      "Confirms the cause explains every symptom, not just the loudest one",
+      "Stops speculative edits that hide a defect instead of fixing it"
+    ]
+  }
+}

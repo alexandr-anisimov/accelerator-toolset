@@ -1,0 +1,19 @@
+{
+  "id": "IMPLEMENTATION-PLANNING",
+  "version": "0.1.0",
+  "source_path": "artifacts/IMPLEMENTATION-PLANNING",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["development-process"],
+  "scope": "project",
+  "presentation": {
+    "name": "Implementation planning",
+    "summary": "Turns agreed requirements into an ordered plan with verifiable steps.",
+    "benefits": [
+      "Breaks work into steps that can each be checked independently",
+      "Orders steps so the riskiest assumption is tested early",
+      "States done criteria per step, not just for the whole task",
+      "Names what the plan does not cover, instead of implying full scope"
+    ]
+  }
+}

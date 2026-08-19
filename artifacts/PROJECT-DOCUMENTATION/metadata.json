@@ -1,0 +1,19 @@
+{
+  "id": "PROJECT-DOCUMENTATION",
+  "version": "0.1.0",
+  "source_path": "artifacts/PROJECT-DOCUMENTATION",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["documentation"],
+  "scope": "project",
+  "presentation": {
+    "name": "Project documentation",
+    "summary": "Documents architecture decisions, component boundaries and constraints a reader cannot infer from the code.",
+    "benefits": [
+      "Records why a decision was made, not just what the code does",
+      "Makes component boundaries and their contracts explicit",
+      "Captures non-obvious constraints before they are rediscovered the hard way",
+      "Keeps documentation updated in the same change that invalidates it"
+    ]
+  }
+}

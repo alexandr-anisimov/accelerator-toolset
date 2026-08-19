@@ -6,5 +6,15 @@
     "frameworks": ["dbt"]
   },
   "strength": "on-demand",
-  "topics": ["refactoring"]
+  "topics": ["refactoring"],
+  "scope": "project",
+  "presentation": {
+    "name": "dbt model refactoring",
+    "summary": "Restructures a dbt model while proving its output did not change.",
+    "benefits": [
+      "Finds the full downstream blast radius from the dbt graph, not grep",
+      "Captures the current output before any edit",
+      "Separates safe internal changes from interface changes that break consumers"
+    ]
+  }
 }
