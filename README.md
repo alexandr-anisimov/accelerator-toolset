@@ -50,7 +50,7 @@ artifacts/
 ```json
 {
   "schema_version": "2",
-  "toolset_ref": "refs/tags/v0.5.1",
+  "toolset_ref": "refs/tags/v0.6.0",
   "vocabulary": {
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
     "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino", "snowflake", "databricks"],
@@ -209,5 +209,6 @@ only:
 | `v0.4.0` | Remaining `AS-SPIKE-001`–`008` matching examples removed; the catalog is fifteen real artifacts, all `on-demand`. The `fixture` field and its validation are retained for future transport work |
 | `v0.5.0` | Three stack-agnostic pipeline quality artifacts, adapted from internal team practice; the first artifacts declaring `applies_to: {}`, and the first content under the `code-review` topic |
 | `v0.5.1` | No catalog content change. Adds `LICENSE` (MIT) and marks the internal-only references in `Related`, so the catalog can be published as a public repository |
+| `v0.6.0` | `schema_version` moves to `2`: every artifact declares `scope`, and every `on-demand` artifact carries a questionnaire `presentation` card. The eighteen existing artifacts are migrated additively, with no `SKILL.md` changed. Ten general skills added — six stack-independent engineering skills and four covering the development process — taking the catalog to twenty-eight. `TECHNICAL-WRITING` is the first `user`-scope artifact. Vocabulary gains the `writing` and `development-process` topics |
 
 Tags are immutable. A published tag is never moved to a different commit: a consumer profile pins one of these, and repointing it would hand the same profile different artifacts with nothing anywhere reporting a change. Corrections ship as a new tag.
