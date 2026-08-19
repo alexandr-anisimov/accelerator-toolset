@@ -37,7 +37,7 @@ $ErrorActionPreference = 'Stop'
 # publishes topics, and this validator still has to check them.
 $VocabularyDimensions = @('languages', 'frameworks', 'layout', 'agents', 'topics')
 
-$SupportedSchemaVersion = '1'
+$SupportedSchemaVersions = @('1', '2')
 
 $errors = [System.Collections.Generic.List[string]]::new()
 
@@ -100,6 +100,9 @@ function Test-CatalogArtifact {
         $Vocabulary,
 
         [Parameter(Mandatory)]
+        [string] $SchemaVersion,
+
+        [Parameter(Mandatory)]
         [int] $Index
     )
 
@@ -141,6 +144,19 @@ function Test-CatalogArtifact {
 
     if ($hasStrength -and $Artifact.strength -cne 'always' -and $Artifact.strength -cne 'on-demand') {
         Add-CatalogError "Artifact $id has unknown strength '$($Artifact.strength)'. Expected 'always' or 'on-demand'."
+    }
+
+    $hasScope = $null -ne $Artifact.PSObject.Properties['scope'] -and
+        -not [string]::IsNullOrWhiteSpace($Artifact.scope)
+    if ($SchemaVersion -ceq '2' -and -not $hasScope) {
+        Add-CatalogError "Artifact $id is missing required field 'scope'. Catalog schema 2 requires 'project' or 'user'."
+    }
+    if ($hasScope -and $Artifact.scope -cnotin @('project', 'user')) {
+        Add-CatalogError "Artifact $id has unknown scope '$($Artifact.scope)'. Expected 'project' or 'user'."
+    }
+    if ($hasScope -and $Artifact.scope -ceq 'user' -and
+        $hasStrength -and $Artifact.strength -ceq 'always') {
+        Add-CatalogError "Artifact $id is always but has user scope. User artifacts require explicit consent and must be on-demand."
     }
 
     if ($hasAppliesTo) {
@@ -200,6 +216,46 @@ function Test-CatalogArtifact {
     if ($hasStrength -and $Artifact.strength -ceq 'on-demand' -and $topics.Count -eq 0) {
         Add-CatalogError "Artifact $id is on-demand but declares no topics, so no profile could ever select it."
     }
+
+    $hasPresentation = $null -ne $Artifact.PSObject.Properties['presentation'] -and
+        $null -ne $Artifact.presentation
+    if ($SchemaVersion -ceq '2' -and $hasStrength -and
+        $Artifact.strength -ceq 'on-demand' -and -not $hasPresentation) {
+        Add-CatalogError "Artifact $id is on-demand but has no presentation card. Catalog schema 2 requires name, summary and benefits."
+    }
+    if ($hasPresentation) {
+        if ($Artifact.presentation -is [string] -or $Artifact.presentation -is [ValueType] -or
+            $Artifact.presentation -is [array]) {
+            Add-CatalogError "Artifact $id declares presentation as a scalar rather than an object."
+        } else {
+            foreach ($field in @('name', 'summary', 'benefits')) {
+                if ($null -eq $Artifact.presentation.PSObject.Properties[$field] -or
+                    $null -eq $Artifact.presentation.$field) {
+                    Add-CatalogError "Artifact $id presentation is missing required field '$field'."
+                }
+            }
+
+            if ($null -ne $Artifact.presentation.PSObject.Properties['name'] -and
+                ($Artifact.presentation.name -isnot [string] -or
+                    [string]::IsNullOrWhiteSpace($Artifact.presentation.name))) {
+                Add-CatalogError "Artifact $id presentation name must be non-empty."
+            }
+            if ($null -ne $Artifact.presentation.PSObject.Properties['summary'] -and
+                ($Artifact.presentation.summary -isnot [string] -or
+                    [string]::IsNullOrWhiteSpace($Artifact.presentation.summary))) {
+                Add-CatalogError "Artifact $id presentation summary must be non-empty."
+            }
+            if ($null -ne $Artifact.presentation.PSObject.Properties['benefits']) {
+                $benefits = @($Artifact.presentation.benefits)
+                if ($Artifact.presentation.benefits -is [string] -or
+                    $Artifact.presentation.benefits -is [ValueType] -or
+                    $benefits.Count -eq 0 -or
+                    @($benefits | Where-Object { $_ -isnot [string] -or [string]::IsNullOrWhiteSpace($_) }).Count -gt 0) {
+                    Add-CatalogError "Artifact $id presentation benefits must be a non-empty list of non-empty strings."
+                }
+            }
+        }
+    }
 }
 
 # A missing or malformed file is a broken invocation, not catalog content that
@@ -225,9 +281,9 @@ if ($null -eq $index) {
 # cover makes every field below it a guess, and "the contract moved" is more
 # useful than a vocabulary complaint about a field that was renamed.
 if ($null -eq $index.PSObject.Properties['schema_version'] -or
-    $index.schema_version -ne $SupportedSchemaVersion) {
+    $SupportedSchemaVersions -cnotcontains $index.schema_version) {
     $declaredVersion = if ($null -ne $index.PSObject.Properties['schema_version']) { $index.schema_version } else { '<missing>' }
-    Add-CatalogError "Catalog index schema_version '$declaredVersion' is not covered by this validator (supports '$SupportedSchemaVersion')."
+    Add-CatalogError "Catalog index schema_version '$declaredVersion' is not covered by this validator (supports '$($SupportedSchemaVersions -join ', ')')."
 }
 
 $vocabulary = $null
@@ -282,7 +338,9 @@ for ($i = 0; $i -lt $artifacts.Count; $i++) {
 }
 
 for ($i = 0; $i -lt $artifacts.Count; $i++) {
-    Test-CatalogArtifact -Artifact $artifacts[$i] -Vocabulary $vocabulary -Index $i
+    $schemaVersion = if ($null -ne $index.PSObject.Properties['schema_version']) { [string]$index.schema_version } else { '<missing>' }
+    Test-CatalogArtifact -Artifact $artifacts[$i] -Vocabulary $vocabulary `
+        -SchemaVersion $schemaVersion -Index $i
 }
 
 return [pscustomobject]@{

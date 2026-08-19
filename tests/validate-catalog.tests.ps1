@@ -128,6 +128,94 @@ Describe 'validate-catalog.ps1' {
             $result.IsValid | Should -BeTrue
             $result.ArtifactCount | Should -Be 0
         }
+
+        It 'accepts a schema 2 user artifact with a questionnaire card' {
+            $path = New-TestIndex -Name 'v2-user-card' -SchemaVersion '2' -Artifacts @(
+                @{
+                    id = 'HUMANIZER'; version = '1.0.0'; source_path = 'artifacts/HUMANIZER'
+                    applies_to = @{}; strength = 'on-demand'; scope = 'user'
+                    topics = @('documentation')
+                    presentation = @{
+                        name = 'Humanizer'
+                        summary = 'Makes generated prose read naturally.'
+                        benefits = @('Removes repetitive AI phrasing', 'Preserves meaning')
+                    }
+                }
+            )
+
+            (& $validator -IndexPath $path).IsValid | Should -BeTrue
+        }
+
+        It 'keeps schema 1 artifacts backward compatible without scope or presentation' {
+            $path = New-TestIndex -Name 'v1-legacy' -SchemaVersion '1' -Artifacts @(
+                @{
+                    id = 'AS-LEGACY'; version = '1.0.0'; source_path = 'artifacts/AS-LEGACY'
+                    applies_to = @{}; strength = 'on-demand'; topics = @('testing')
+                }
+            )
+
+            (& $validator -IndexPath $path).IsValid | Should -BeTrue
+        }
+    }
+
+    Context 'schema 2 questionnaire metadata' {
+        It 'requires scope' {
+            $path = New-TestIndex -Name 'v2-no-scope' -SchemaVersion '2' -Artifacts @(
+                @{
+                    id = 'AS-NO-SCOPE'; version = '1.0.0'; source_path = 'artifacts/AS-NO-SCOPE'
+                    applies_to = @{}; strength = 'always'; topics = @()
+                }
+            )
+
+            $result = & $validator -IndexPath $path
+            $result.IsValid | Should -BeFalse
+            $result.Errors | Should -Match 'AS-NO-SCOPE.*scope'
+        }
+
+        It 'requires a presentation card for on-demand artifacts' {
+            $path = New-TestIndex -Name 'v2-no-card' -SchemaVersion '2' -Artifacts @(
+                @{
+                    id = 'AS-NO-CARD'; version = '1.0.0'; source_path = 'artifacts/AS-NO-CARD'
+                    applies_to = @{}; strength = 'on-demand'; scope = 'project'
+                    topics = @('testing')
+                }
+            )
+
+            $result = & $validator -IndexPath $path
+            $result.IsValid | Should -BeFalse
+            $result.Errors | Should -Match 'AS-NO-CARD.*presentation'
+        }
+
+        It 'rejects always user artifacts because personal installation needs consent' {
+            $path = New-TestIndex -Name 'v2-user-always' -SchemaVersion '2' -Artifacts @(
+                @{
+                    id = 'AS-USER-ALWAYS'; version = '1.0.0'; source_path = 'artifacts/AS-USER-ALWAYS'
+                    applies_to = @{}; strength = 'always'; scope = 'user'; topics = @()
+                }
+            )
+
+            $result = & $validator -IndexPath $path
+            $result.IsValid | Should -BeFalse
+            $result.Errors | Should -Match 'AS-USER-ALWAYS.*explicit consent'
+        }
+
+        It 'rejects scalar benefits because a card must publish a list' {
+            $path = New-TestIndex -Name 'v2-scalar-benefits' -SchemaVersion '2' -Artifacts @(
+                @{
+                    id = 'AS-BAD-CARD'; version = '1.0.0'; source_path = 'artifacts/AS-BAD-CARD'
+                    applies_to = @{}; strength = 'on-demand'; scope = 'project'
+                    topics = @('documentation')
+                    presentation = @{
+                        name = 'Bad card'; summary = 'Has the wrong benefits shape.'
+                        benefits = 'one scalar benefit'
+                    }
+                }
+            )
+
+            $result = & $validator -IndexPath $path
+            $result.IsValid | Should -BeFalse
+            $result.Errors | Should -Match 'AS-BAD-CARD.*benefits.*list'
+        }
     }
 
     Context 'vocabulary agreement' {
@@ -595,7 +683,7 @@ Describe 'validate-catalog.ps1' {
         }
 
         It 'rejects a schema_version this contract does not cover' {
-            $path = New-TestIndex -Name 'futureschema' -SchemaVersion '2'
+            $path = New-TestIndex -Name 'futureschema' -SchemaVersion '3'
 
             $result = & $validator -IndexPath $path
 

@@ -6,5 +6,15 @@
     "frameworks": ["dbt"]
   },
   "strength": "on-demand",
-  "topics": ["refactoring", "data-modeling"]
+  "topics": ["refactoring", "data-modeling"],
+  "scope": "project",
+  "presentation": {
+    "name": "Legacy SQL to dbt",
+    "summary": "Ports legacy SQL into dbt layer by layer and reconciles against the original.",
+    "benefits": [
+      "Separates what to reuse from what to rewrite",
+      "Builds the staging layer before porting business logic",
+      "Reconciles migrated output against the legacy result"
+    ]
+  }
 }

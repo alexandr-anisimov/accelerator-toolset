@@ -6,5 +6,15 @@
     "languages": ["python"]
   },
   "strength": "on-demand",
-  "topics": ["refactoring", "orchestration"]
+  "topics": ["refactoring", "orchestration"],
+  "scope": "project",
+  "presentation": {
+    "name": "ETL decomposition",
+    "summary": "Splits a monolithic extract-transform-load function into testable units with I/O at the edges.",
+    "benefits": [
+      "Isolates the transform so it can be tested without network or database",
+      "Puts fetch and write behind thin I/O modules",
+      "Says when a function is small enough to leave alone"
+    ]
+  }
 }

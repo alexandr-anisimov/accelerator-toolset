@@ -6,5 +6,15 @@
     "frameworks": ["dbt"]
   },
   "strength": "on-demand",
-  "topics": ["testing", "data-quality"]
+  "topics": ["testing", "data-quality"],
+  "scope": "project",
+  "presentation": {
+    "name": "dbt model testing",
+    "summary": "Picks dbt schema tests that catch real defects for each column role.",
+    "benefits": [
+      "Chooses tests by what the column is, not by habit",
+      "Covers keys, relationships and accepted values where they matter",
+      "Gives a procedure for what to do when a test fails"
+    ]
+  }
 }

@@ -6,9 +6,23 @@ This is the task-shaped companion to [`README.md`](../README.md), which is the r
 
 For a shipped artifact to copy from, read [`artifacts/ETL-DECOMPOSITION`](../artifacts/ETL-DECOMPOSITION) — one dimension, one topic, `on-demand`, which is the shape most artifacts should have.
 
-## The three decisions
+## The five decisions
 
-Everything else about an artifact is mechanical. These three determine whether anyone ever sees it.
+Everything else about an artifact is mechanical. These five determine whether anyone ever sees it.
+
+Schema 2 adds two more authoring decisions for questionnaire-ready artifacts:
+scope and the presentation card. This catalog is schema 2. Schema 1 remains
+valid for previously published tags, and the validator still accepts it.
+
+### 0. `scope` — team or personal
+
+| Value | Stored and reproduced as |
+|---|---|
+| `project` | Reviewed project selection, shared with the team and CI |
+| `user` | Local developer overlay, absent from CI |
+
+Every schema 2 artifact declares one. A user artifact must be `on-demand`:
+personal tools require explicit consent and cannot claim baseline installation.
 
 ### 1. `strength` — `always` or `on-demand`
 
@@ -60,6 +74,30 @@ Values come from the closed `topics` vocabulary published in `index.json`. An `o
 
 An `always` artifact does not need topics. Write `"topics": []`.
 
+In schema 2, topics are the broad questions used for progressive disclosure.
+They decide which cards the user opens, not which complete category is installed.
+The final selection stores exact artifact ids.
+
+### 4. `presentation` — the informed-consent card
+
+Every schema 2 `on-demand` artifact declares:
+
+```json
+"presentation": {
+  "name": "Humanizer",
+  "summary": "Makes generated prose read naturally.",
+  "benefits": [
+    "Removes repetitive AI phrasing",
+    "Preserves meaning"
+  ]
+}
+```
+
+Keep the name and summary short. Benefits must be concrete outcomes the skill
+actually provides. The questionnaire uses this object verbatim and never reads
+`SKILL.md` to invent benefits. Empty cards, empty benefits, and scalar
+`presentation` values fail validation.
+
 ## The current vocabulary
 
 Taken from `index.json` at the time of writing. **`index.json` is the source of truth — check it rather than this table**, which goes stale the moment the vocabulary grows.
@@ -70,7 +108,7 @@ Taken from `index.json` at the time of writing. **`index.json` is the source of 
 | `frameworks` | `nestjs`, `react`, `django`, `aspnet`, `airflow`, `dbt`, `duckdb`, `spark`, `trino` |
 | `layout` | `monorepo`, `single` |
 | `agents` | `claude-code` |
-| `topics` | `code-review`, `testing`, `documentation`, `refactoring`, `orchestration`, `data-modeling`, `data-quality`, `ingestion`, `performance` |
+| `topics` | `code-review`, `testing`, `documentation`, `refactoring`, `orchestration`, `data-modeling`, `data-quality`, `ingestion`, `performance`, `debugging`, `writing`, `development-process` |
 
 `frameworks` is the loosest of the dimensions: it holds anything that identifies the
 stack beyond the language, so orchestrators (`airflow`), transformation tools (`dbt`)
@@ -263,7 +301,7 @@ Every message below is produced by [`scripts/validate-catalog.ps1`](../scripts/v
 | `Catalog index declares '<a>' and '<b>', which collide on a case-insensitive filesystem. Artifact ids must be unique.` | Two ids differ only in case. They would become one directory. |
 | `Catalog index at <path> contains an artifact with no id (at index <n>).` | An entry has no `id`, a blank `id`, or is a bare string. Counted from 0. |
 | `Catalog artifact at index <n> is not an object. ...` | An entry is a number or other non-object. |
-| `Catalog index schema_version '<v>' is not covered by this validator (supports '1').` | The index declares a schema version this validator does not cover. |
+| `Catalog index schema_version '<v>' is not covered by this validator (supports '1, 2').` | The index declares a schema version this validator does not cover. |
 | `Catalog index at <path> has no vocabulary block. ...` | The `vocabulary` block is missing. Nothing can be validated without it. |
 | `Catalog index at <path> has no artifacts list. Write an empty list for a catalog with no artifacts.` | The `artifacts` key is absent. |
 
@@ -293,9 +331,11 @@ The pattern across all six: the failure is silent. Nothing errors, the install r
 ## Checklist
 
 - [ ] Directory under `artifacts/`, named for the id, self-contained
+- [ ] Schema 2: `scope` is `project` or `user`; user scope is never `always`
 - [ ] `strength` defaulted to `on-demand` unless you can defend `always` against the test
 - [ ] `applies_to` declares only the dimensions that would make the artifact *wrong* if absent; `{}` written explicitly if universal
 - [ ] `topics` non-empty if `on-demand`, all values from the vocabulary, all lower-case
+- [ ] Schema 2 `on-demand`: presentation card has a short name, truthful summary and concrete benefits
 - [ ] `metadata.json` matches the index entry field for field
 - [ ] No `fixture: true`
 - [ ] `./scripts/validate-catalog.ps1 -IndexPath ./index.json` reports `IsValid: True`

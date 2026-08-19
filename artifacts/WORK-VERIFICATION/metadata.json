@@ -1,0 +1,19 @@
+{
+  "id": "WORK-VERIFICATION",
+  "version": "0.1.0",
+  "source_path": "artifacts/WORK-VERIFICATION",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["development-process"],
+  "scope": "project",
+  "presentation": {
+    "name": "Work verification",
+    "summary": "Checks that work actually does what was asked before it is reported as finished.",
+    "benefits": [
+      "Requires observed command output before any claim that something passes",
+      "Separates passed, failed, skipped and never-run instead of merging them",
+      "Checks the original request was met, not only that the code runs",
+      "Reports what was not verified rather than leaving it implied"
+    ]
+  }
+}

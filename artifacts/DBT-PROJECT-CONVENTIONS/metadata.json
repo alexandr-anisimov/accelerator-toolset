@@ -6,5 +6,15 @@
     "frameworks": ["dbt"]
   },
   "strength": "on-demand",
-  "topics": ["data-modeling", "data-quality"]
+  "topics": ["data-modeling", "data-quality"],
+  "scope": "project",
+  "presentation": {
+    "name": "dbt project conventions",
+    "summary": "Establishes what belongs in each dbt layer and why the boundaries hold.",
+    "benefits": [
+      "Places sources, staging, intermediate and mart logic consistently",
+      "Applies contracts and tests at the layer where they are meaningful",
+      "Prevents business logic leaking into the staging layer"
+    ]
+  }
 }

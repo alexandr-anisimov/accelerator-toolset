@@ -6,5 +6,15 @@
     "frameworks": ["snowflake"]
   },
   "strength": "on-demand",
-  "topics": ["performance", "debugging"]
+  "topics": ["performance", "debugging"],
+  "scope": "project",
+  "presentation": {
+    "name": "Snowflake query diagnosis",
+    "summary": "Diagnoses one Snowflake query from its profile and operator statistics.",
+    "benefits": [
+      "Reads pruning and spill statistics to locate the real bottleneck",
+      "Separates a query problem from a warehouse sizing problem",
+      "Points at the specific operator responsible for the cost"
+    ]
+  }
 }

@@ -1,0 +1,19 @@
+{
+  "id": "PLAN-EXECUTION",
+  "version": "0.1.0",
+  "source_path": "artifacts/PLAN-EXECUTION",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["development-process"],
+  "scope": "project",
+  "presentation": {
+    "name": "Plan execution",
+    "summary": "Works through an agreed plan one step at a time and handles it when reality diverges.",
+    "benefits": [
+      "Keeps each step small enough to verify before the next one starts",
+      "Gives a rule for when to adapt the plan and when to stop and ask",
+      "Prevents unrequested scope from being added mid-execution",
+      "Keeps the plan and the actual state of the work in agreement"
+    ]
+  }
+}

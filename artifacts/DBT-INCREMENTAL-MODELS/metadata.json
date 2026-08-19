@@ -6,5 +6,15 @@
     "frameworks": ["dbt"]
   },
   "strength": "on-demand",
-  "topics": ["data-modeling", "performance"]
+  "topics": ["data-modeling", "performance"],
+  "scope": "project",
+  "presentation": {
+    "name": "dbt incremental models",
+    "summary": "Chooses an incremental strategy and unique key that survive late data and schema drift.",
+    "benefits": [
+      "Matches the strategy to how the source actually changes",
+      "Handles late-arriving rows instead of silently dropping them",
+      "Detects divergence between incremental and full-refresh output"
+    ]
+  }
 }

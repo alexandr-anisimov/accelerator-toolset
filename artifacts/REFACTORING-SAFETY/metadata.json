@@ -1,0 +1,19 @@
+{
+  "id": "REFACTORING-SAFETY",
+  "version": "0.1.0",
+  "source_path": "artifacts/REFACTORING-SAFETY",
+  "applies_to": {},
+  "strength": "on-demand",
+  "topics": ["refactoring"],
+  "scope": "project",
+  "presentation": {
+    "name": "Refactoring safety",
+    "summary": "Plans and sequences a refactor so behaviour is provably unchanged at every step.",
+    "benefits": [
+      "Establishes a behavioural baseline before the first edit",
+      "Separates internal restructuring from interface changes that break callers",
+      "Sequences the work so each step can be verified and reverted alone",
+      "Says when a refactor should stop rather than expand"
+    ]
+  }
+}

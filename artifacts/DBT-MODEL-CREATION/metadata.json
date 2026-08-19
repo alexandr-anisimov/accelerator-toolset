@@ -6,5 +6,15 @@
     "frameworks": ["dbt"]
   },
   "strength": "on-demand",
-  "topics": ["data-modeling"]
+  "topics": ["data-modeling"],
+  "scope": "project",
+  "presentation": {
+    "name": "dbt model creation",
+    "summary": "Runs the build-and-verify loop for a new dbt model instead of stopping at compile.",
+    "benefits": [
+      "Reads the project's existing layering and naming before writing",
+      "Builds and inspects real output rather than only compiling",
+      "Checks grain and row counts before the model is called done"
+    ]
+  }
 }

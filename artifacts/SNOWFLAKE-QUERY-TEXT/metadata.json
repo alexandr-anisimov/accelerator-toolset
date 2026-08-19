@@ -6,5 +6,15 @@
     "frameworks": ["snowflake"]
   },
   "strength": "on-demand",
-  "topics": ["performance", "refactoring"]
+  "topics": ["performance", "refactoring"],
+  "scope": "project",
+  "presentation": {
+    "name": "Snowflake query rewriting",
+    "summary": "Rewrites a Snowflake query for performance without changing its results.",
+    "benefits": [
+      "Separates transformations that are safe from ones that only look safe",
+      "Explains why each rewrite preserves the result set",
+      "Keeps null and duplicate semantics intact through the rewrite"
+    ]
+  }
 }
