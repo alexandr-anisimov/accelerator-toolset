@@ -186,6 +186,7 @@ require.
 
 ## Related
 
+- Contributing — commit and branch conventions, the PR process, dev setup: [`CONTRIBUTING.md`](CONTRIBUTING.md)
 - Third-party attribution for artifacts derived from external sources: [`NOTICE`](NOTICE)
 - Adding an artifact — the `strength`, `applies_to`, and `topics` decisions, a worked example, and how to validate before pushing: [`docs/authoring-artifacts.md`](docs/authoring-artifacts.md)
 - Using this catalog without the installer: see [Fetching artifacts](#fetching-artifacts) above. The transport is plain Git against a public repository, so no credentials and no additional tooling are required
