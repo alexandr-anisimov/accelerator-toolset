@@ -55,7 +55,7 @@ artifacts/
     "languages": ["typescript", "javascript", "python", "csharp", "go", "sql"],
     "frameworks": ["nestjs", "react", "django", "aspnet", "airflow", "dbt", "duckdb", "spark", "trino", "snowflake", "databricks"],
     "layout": ["monorepo", "single"],
-    "agents": ["claude-code"],
+    "agents": ["claude-code", "codex"],
     "topics": [
       "code-review", "testing", "documentation", "refactoring",
       "orchestration", "data-modeling", "data-quality", "ingestion", "performance",
